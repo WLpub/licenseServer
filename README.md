@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # linkedinhr
 
 01  所有设计文档，UI,数据库设计,elastic search 设计
@@ -13,3 +14,7 @@ gradle build -x test
 
 2, mvn install
 
+=======
+# licenseServer
+license server for screenTiger
+>>>>>>> ef860ebcc422f0e45b6f9371f4762afe153855ef
