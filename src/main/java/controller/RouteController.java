@@ -20,7 +20,7 @@ public class RouteController {
 
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_MANAGE = "manage";
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(RouteController.class);
 
 	@Resource
 	private UserService userService;
@@ -54,7 +54,7 @@ public class RouteController {
 		JSONObject ret = new JSONObject();
 		try {
 				if(httpSession.getAttribute("user")==null){
-					throw new Exception("�û�δ��½");
+					throw new Exception("用户未登录！");
 				}
 				User ur = (User)httpSession.getAttribute("user");
 				ur.setPassword("");
@@ -74,7 +74,7 @@ public class RouteController {
 		try {
 			if(user.getPassword()==null||user.getPassword().equals("")){
 				ret.put("status", -1);
-				ret.put("errMsg", "����Ϊ�գ�");
+				ret.put("errMsg", "用户未登录！");
 				return ret;
 			}
 			if (!(user.getEmail()==null)&&!user.getEmail().equals("")) {
@@ -88,7 +88,7 @@ public class RouteController {
 					ret.put("user", us);
 				}else{
 					ret.put("status", -1);
-					ret.put("errMsg", "�û������ڣ�");
+					ret.put("errMsg", "用户名或密码错误！");
 				}
 			}
 		} catch (Exception e) {
@@ -110,7 +110,7 @@ public class RouteController {
 			}
 			else{
 				ret.put("status", -1);
-				ret.put("errMsg", "�û��Ѿ����ڣ�");
+				ret.put("errMsg", "创建用户失败，请稍后再试！");
 			}
 		} catch (Exception e) {
 			ret.put("status", -1);
@@ -140,4 +140,5 @@ public class RouteController {
 		logger.debug("user id:" + ret + "; with name:" + user.getUsername());
 		return ret;
 	}
+	
 }
