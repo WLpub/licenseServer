@@ -8,6 +8,9 @@ public class User {
     private String email;
     private String permission;
     private Integer point;
+    private Integer balance;
+    private String code;
+    private String invitationCode;
     
 	public Integer getId() {
 		return id;
@@ -50,5 +53,23 @@ public class User {
 	}
 	public void setPoint(Integer point) {
 		this.point = point;
+	}
+	public Integer getBalance() {
+		return balance;
+	}
+	public void setBalance(Integer balance) {
+		this.balance = balance;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getInvitationCode() {
+		return invitationCode;
+	}
+	public void setInvitationCode(String invitationCode) {
+		this.invitationCode = invitationCode;
 	}
 }

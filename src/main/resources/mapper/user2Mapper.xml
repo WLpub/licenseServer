@@ -11,6 +11,9 @@
 		<result column="PHONE" property="phone" jdbcType="CHAR" />
 		<result column="PERMISSION" property="permission" jdbcType="CHAR"/>
 		<result column="POINT" property="point" jdbcType="INTEGER"/>
+		<result column="BALANCE" property="balance" jdbcType="INTEGER"/>
+		<result column="CODE" property="code" jdbcType="CHAR"/>
+		<result column="INVITATIONCODE" property="invitationCode" jdbcType="CHAR"/>
 	</resultMap>
 	<!-- 查询单条记录 -->
 	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">

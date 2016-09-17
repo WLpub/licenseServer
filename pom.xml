@@ -102,13 +102,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
 		</dependency>
-		
-		<!-- pageHelper -->
-		<dependency>
-	        <groupId>com.github.pagehelper</groupId>
-	        <artifactId>pagehelper</artifactId>
-	        <version>3.7.5</version>
-    	</dependency>
     
 		<!-- javaee-api包 注意和项目使用的JDK版本对应 -->
 		<dependency>
