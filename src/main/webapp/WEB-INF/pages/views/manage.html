@@ -1,0 +1,82 @@
+		<!--/. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li><a href="#/file"><i class="fa fa-dashboard"></i> 我的简历</a></li>
+					<li><a href="#/way"><i class="fa fa-fw fa-sitemap"></i>我的渠道</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+					我的 LinkedInHr <small>你好： <font ng-bind="generalInfo.user.username"></font></small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#/">首页</a></li>
+					<li class="active"></li>
+				</ol>
+			</div>
+			<div id="page-inner">
+				<!-- /. ROW  -->
+				<div class="row">
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.totalWay"></h3>
+										<small>已有渠道</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a href="#/way"><i class="fa fa-eye fa-5x red"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.totalFile"></h3>
+										<small>今日新增简历</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a href="#/file"><i class="fa fa-user fa-5x yellow"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.user.point"></h3>
+										<small>现有积分</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a href=""><i class="fa fa-money fa-5x green"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<footer>
+				<p>
+					Copyright &copy; 2016.Company name All rights reserved.UUmai
+				</p>
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>

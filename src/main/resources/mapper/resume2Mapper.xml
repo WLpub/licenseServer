@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ResumeDao">
+<!--设置model类和数据库中表的字段一一对应，注意数据库字段和model类中的字段名称不致，此处一定要！-->
+	<resultMap id="BaseResultMap" type="model.Resume">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="CHAR" />
+		<result column="JOBNAME" property="jobname" jdbcType="CHAR" />
+		<result column="DELIEVER_DATE" property="deliever_date" jdbcType="CHAR" />
+		<result column="CHANNEL_ID" property="channel_id" jdbcType="INTEGER" />
+		<result column="HRACCOUNT_ID" property="hraccount_id" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 查询单条记录 -->
+	<select id="selectResumeById" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM hrresume WHERE ID = #{id}
+	</select>
+	<select id="selectResumeByUserId" resultMap="BaseResultMap">
+		SELECT * FROM hrresume where hrresume.hraccount_id in (select id from hraccount where user_id = #{user_id}) limit #{start},10
+	</select>
+	<!-- 查询数量 -->
+	<select id="getResumeCount" parameterType="int" resultType="int">
+		SELECT count(*) FROM hrresume where hrresume.hraccount_id in (select id from hraccount where user_id = #{id})
+	</select>
+</mapper>

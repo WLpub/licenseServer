@@ -1,0 +1,159 @@
+<div class="pageWidth container">
+	<div class="detail_search row">
+        <div class="col-md-2">
+            <div class="dropdown ">
+                 
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control " placeholder="全文搜索" ng-model="query" ng-keypress="enterSearchWord($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="search" ng-click="searchGoods()">搜索一下</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="detail_search row">
+    	<div class="well">
+    		<br/>
+    		<form class=" form-horizontal" role="form">
+    			<br/>
+	    		<div class="form-group">
+			      <label  class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;&nbsp;姓名:</label>
+			      <div class="col-sm-4">
+			         <input type="text" class="form-control" placeholder="" ng-model="filter.username">
+			      </div>
+			      <label  class="col-sm-1 control-label">工作年限:</label>
+			      <div class="col-sm-4 row">
+			         <div class="col-sm-5">
+				         <input type="text" class="form-control" placeholder="" ng-model="filter.startYear">
+				      </div>
+				      <div class="col-sm-2 iconTo">
+				      	~
+				      </div>
+				      <div class="col-sm-5">
+				         <input type="text" class="form-control" placeholder=""  ng-model="filter.endYear">
+				      </div>
+			      </div>
+			   </div>
+			   <div class="form-group">
+			      <label  class="col-sm-2 control-label">当前工作单位:</label>
+			      <div class="col-sm-4">
+			         <input type="text" class="form-control" placeholder="" ng-model="filter.company">
+			      </div>
+			      <label  class="col-sm-1 control-label">联系人数:</label>
+			      <div class="col-sm-4 row">
+			         <div class="col-sm-5">
+				         <input type="text" class="form-control" placeholder="" ng-model="filter.startConnection">
+				      </div>
+				      <div class="col-sm-2 iconTo">
+				      	~
+				      </div>
+				      <div class="col-sm-5">
+				         <input type="text" class="form-control" placeholder="" ng-model="filter.endConnection">
+				      </div>
+			      </div>
+			   </div>
+			   <div class="form-group">
+			      <label  class="col-sm-2 control-label">联系方式:</label>
+			      <div class="col-sm-4">
+			      	<label class="checkbox-inline">
+			      		<input type="radio" name="optionsRadiosinline" value="1" checked ng-model="filter.showContact"> 公开
+					</label>
+					<label class="checkbox-inline">
+			      		<input type="radio" name="optionsRadiosinline" value="0" ng-model="filter.showContact"> 不公开
+					</label>
+			      </div>
+			      <label  class="col-sm-1 control-label">所在地:</label>
+			      <div class="col-sm-4 row">
+			      	<div class="col-sm-12">
+				         <input type="text" class="form-control" placeholder="" ng-model="filter.address">
+				      </div>
+			         <!--div class="col-sm-4">
+				         <select class="form-control"></select>
+				      </div>
+				      <div class="col-sm-4">
+				         <select class="form-control"></select>
+				      </div>
+				      <div class="col-sm-4">
+				         <select class="form-control"></select>
+				      </div-->
+			      </div>
+			   </div>
+			   <div class="form-group">
+			      <label  class="col-sm-2 control-label">毕业院校:</label>
+			      <div class="col-sm-4">
+			         <input type="text" class="form-control" placeholder="" ng-model="filter.school">
+			      </div>
+			      <div class="col-sm-4">
+			      	<label class="checkbox-inline">
+			      		<input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" ng-model="filter.is985"> 985
+					</label>
+					<label class="checkbox-inline">
+			      		<input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" ng-model="filter.is211"> 211
+					</label>
+			      </div>
+			   </div>
+	    	</form>
+    	</div>
+    </div>
+    <div class="row">
+        <div class="col-md-7"><br/>
+			<div class="form-inline alignLeft" ng-init="currentPage=0;total=0;" ng-bind="'第'+currentPage+'页 ,共'+total+'条'"></div>
+        </div>
+    </div>
+    <!-- good List -->
+    <div class="goodList row">
+        <table class="table table-striped table-hover line-link table-responsive" id="goodList">
+            <thead>
+            <!--    <th>商城</th>-->
+                <th></th>    <!--图片-->
+                <th>姓名</th>
+                <th>毕业院校</th>
+                <th>工作单位</th>
+				<th>工作年限</th>
+                <th>联系人数</th>
+                <th>所在地</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in goodBlocks.items">
+                 <!--    <td ng-bind="list.logo" class="logoColor"></td> -->
+                    <td>
+                       <a ng-href="{{list.url}}" target="_blank">
+                            <img ng-src="{{list.imgsrc}}" alt="" style="height:30px;">
+                       </a> 
+                    </td>
+                    <td><a ng-href="{{list.url}}"  target="_blank" ng-bind="list.title| limitTo:45"></a></td>
+                    <td><font ng-bind="list.price | currency:'￥'" class="priceColor"></font></td>
+                    <td><a ng-href="{{getDetailId(list.pid,list.website,list.ziying)}}" target="_blank" class="viewHistory">查看历史</a></td>
+                    <td><span title="{{websiteLogoTitle[list.website]}}" class="websiteLogoB" ng-class="websiteLogoBP[list.website]"></span></td>
+					<td ng-class="{'1':'green','0':'black'}[list.instock]" ng-bind="{'1':'现货','-1':'无货'}[list.instock]"></td>
+                    <td ng-bind="{'1':'自营','-1':'第三方'}[list.ziying]"></td>
+                    <td ng-bind="{{list.customerreview | limitTo:5}}+'条'"></td>
+                    <td ng-bind="showUpdate(list.updatetime)"></td>  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="well" ng-show="showFeedBack">
+        <h2 class="text-center">没有结果?，点击<a ng-href="/feedback/{{query}}" target="_blank">提交反馈</a></h2>
+    </div>
+    <!-- paging -->
+    <div class="paging">
+        <paging
+            page="currentPage" 
+            page-size="pageSize" 
+            total="total"
+            adjacent="{{adjacent}}"
+            dots="{{dots}}"
+            scroll-top="{{scrollTop}}" 
+            hide-if-empty="{{hideIfEmpty}}"
+            ul-class="{{ulClass}}"
+            active-class="{{activeClass}}"
+            disabled-class="{{disabledClass}}"
+            show-prev-next="{{showPrevNext}}"
+            paging-action="DoCtrlPagingAct(page, pageSize)">
+        </paging>   
+    </div>
+</div>

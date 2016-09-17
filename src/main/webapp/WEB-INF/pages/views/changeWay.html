@@ -1,0 +1,78 @@
+
+<!--/. NAV TOP  -->
+<nav class="navbar-default navbar-side" role="navigation">
+	<div class="sidebar-collapse">
+		<ul class="nav" id="main-menu">
+			<li><a href="#/file"><i class="fa fa-dashboard"></i> 我的简历</a></li>
+			<li><a class="active-menu" href="#/way"><i class="fa fa-fw fa-sitemap"></i>我的渠道</a></li>
+		</ul>
+	</div>
+</nav>
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div class="header">
+		<h3 class="page-header">
+			我的渠道 <small></small>
+		</h3>
+		<ol class="breadcrumb">
+			<li><a href="#/">首页</a></li>
+			<li><a href="#/way">我的渠道</a></li>
+			<li class="active"><a href="#/changeWay">修改渠道</a></li>
+		</ol>
+	</div>
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="card-title">
+							<div class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改渠道</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">渠道</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" disabled="disabled" ng-model="jobNameJson[channel.channel_id]" placeholder="会员名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">会员名</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" disabled="disabled" ng-model="channel.username"
+										placeholder="会员名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">用户名</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" disabled="disabled" ng-model="channel.account"
+										placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">密码</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" ng-model="channel.password"
+										placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-4">
+									<button type="submit" class="btn btn-default" ng-click="changeWay()">修改</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<p>Copyright &copy; 2016.Company name All rights reserved.UUmai</p>
+		</footer>
+	</div>
+	<!-- /. PAGE INNER  -->
+</div>
