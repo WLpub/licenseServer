@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('uumaiApp',['ngCookies','ngRoute','ngAnimate', 'brantwills.paging'])
+		.module('uumaiApp',['ngCookies','ngRoute'])
 		.config(config);
 
     // cookiesConfig.$inject = ['$cookiesProvider']
@@ -12,8 +12,8 @@
 	function config($routeProvider){
 		$routeProvider
 			.when('/', {
-				templateUrl: 'views/search.html',
-				controller: 'SearchCtrl'
+				templateUrl: 'views/index.html',
+				controller: 'IndexCtrl'
 			})
 			.when('/login', {
 				templateUrl: 'views/login.html',
@@ -22,14 +22,6 @@
 			.when('/register', {
 				templateUrl: 'views/register.html',
 				controller: 'RegisterCtrl'
-			})
-			.when('/list', {
-				templateUrl: 'views/list.html',
-				controller: 'ListCtrl'
-			})
-			.when('/detail/:pid', {
-				templateUrl: 'views/detail.html',
-				controller: 'DetailCtrl'
 			})
 			.otherwise({ redirectTo: '/' });
 	}

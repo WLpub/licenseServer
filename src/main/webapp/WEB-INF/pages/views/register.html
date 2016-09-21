@@ -33,7 +33,31 @@
 				<span ng-show="registerForm.phone.$valid && !registerForm.phone.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
-
+		<div class="form-group">
+			<label class="col-sm-3 control-label">验证码</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" name="code" value="" placeholder="必填" ng-model="currentUser.code" ng-minlength="4" ng-maxlength="4" ng-focus required>
+			</div>
+			<div class="col-sm-1">
+				<button class="btn btn-success">&nbsp;&nbsp;&nbsp;发送验证码&nbsp;&nbsp;&nbsp;</button>
+			</div>
+			<!-- hidden tips -->
+			<div class="col-sm-5 form-control-static tips">
+				<span ng-show="(registerForm.code.$error.minlength || registerForm.code.$error.maxlength) && !registerForm.code.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入手机验证码</span></span>
+				<span ng-show="registerForm.code.$valid && !registerForm.code.$focused"><i class="fa fa-check"></i></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">邀请码</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="invitationCode" value="" placeholder="必填" ng-model="currentUser.invitationCode" ng-minlength="6" ng-maxlength="6" ng-focus required>
+			</div>
+			<!-- hidden tips -->
+			<div class="col-sm-5 form-control-static tips">
+				<span ng-show="(registerForm.invitationCode.$error.minlength || registerForm.invitationCode.$error.maxlength) && !registerForm.invitationCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入邀请码</span></span>
+				<span ng-show="registerForm.invitationCode.$valid && !registerForm.invitationCode.$focused"><i class="fa fa-check"></i></span>
+			</div>
+		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">创建密码</label>
 			<div class="col-sm-4">
@@ -66,7 +90,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-8">
-				<a href="#">《uumai用户协议》</a>
+				<a href="#">《LicenseServer用户协议》</a>
 			</div>
 		</div>
 	</form>

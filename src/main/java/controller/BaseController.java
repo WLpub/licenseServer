@@ -16,11 +16,11 @@ import model.User;
 import service.UserService;
 
 @Controller
-public class RouteController {
+public class BaseController {
 
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_MANAGE = "manage";
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(RouteController.class);
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	@Resource
 	private UserService userService;
@@ -104,6 +104,7 @@ public class RouteController {
 	public @ResponseBody JSONObject createUser(@RequestBody User user) {
 		JSONObject ret = new JSONObject();
 		try {
+			System.out.println(user);
 			int uId = userService.createUser(user);
 			if(uId>0){
 				ret.put("status", uId);

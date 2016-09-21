@@ -17,7 +17,7 @@
     <header  class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-left">
-                <span href="/" class="header_nav header_logo">LinkedIn HR</span>
+                <span href="/" class="header_nav header_logo">License Server</span>
              </div>
             <div class="">
             	<c:if test="${empty sessionScope.user}">
@@ -92,18 +92,12 @@
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 		<script src="assets/js/sweetalert.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/keyboard.js"></script>
-        <script src="scripts/controllers/paging.js"></script>
-        <script src="scripts/controllers/search.js"></script>  
-        <script src="scripts/controllers/items.js"></script>
-        <script src="scripts/controllers/list.js"></script>
-        <script src="scripts/controllers/detail.js"></script>
+        <script src="scripts/controllers/index.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/register.js"></script>
         <!-- endbuild -->
