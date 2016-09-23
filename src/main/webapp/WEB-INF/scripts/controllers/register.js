@@ -58,20 +58,23 @@
 			password: "",
 			phone: ""
 		};
-
-		//register a new user
+		
+		// btn msg
+		$scope.msgBtnFont = "点击发送验证码";
+		$scope.msgSending = false;
+		// register a new user
 		$scope.submitRegister = function(){
 			$.ajax({
 				type : 'POST',
 				url : "./createUser",
-				data : JSON.stringify($scope.currentUser),
+				data : JSON.stringify({'user':$scope.currentUser,'imageCode':$scope.imageCode,'phoneCode':$scope.phoneCode}),
 				success : function(ret){
 					if(ret.status>-1){
 						$scope.isSuccess = true;
 						window.location.href="#/login";
 					}else{
 						$scope.isSuccess = false;
-						swal('注册失败！'+ret.errMsg);
+						swal('注册失败:'+ret.errMsg);
 					}
 				},
 				error:function(ret){
@@ -81,5 +84,63 @@
 				contentType : 'application/json'
 			});
 		};
+		$scope.timeStart = 1;
+		$scope.timeTotal = 60;
+		$scope.update_p = function() { 
+			if($scope.timeStart == $scope.timeTotal) { 
+				$scope.msgBtnFont = "点击发送验证码";
+				$scope.msgSending = false;
+			 }else { 
+				 var printnr = $scope.timeTotal-$scope.timeStart; 
+				 $scope.msgBtnFont = " (" + printnr +")秒后重新发送";
+				 $scope.msgSending = false;
+			 }
+		}; 
+		$scope.sendMsg = function(){
+			if(!!$scope.currentUser.phone)
+			{
+				$scope.msgSending = false;
+				$.ajax({
+					type : 'POST',
+					url : "./phoneMsg",
+					data : JSON.stringify({'phone':$scope.currentUser.phone,"msg":"您的验证码为："}),
+					success : function(ret){
+						if(ret.status>-1){
+							$scope.isSuccess = true;
+							$scope.timeStart = 60;
+						}else{
+							$scope.isSuccess = false;
+							$scope.timeStart = 60;
+							swal('发送失败，请稍后再试！');
+						}
+					},
+					error:function(ret){
+						$scope.isSuccess = false;
+						swal( '注册失败！');
+					},
+					contentType : 'application/json'
+				});
+				for($scope.timeStart=1;$scope.timeStart<=60;$scope.timeStart++) { 
+					window.setTimeout("$('#updateBtn').click()", $scope.timeStart *1000 ); 
+				}
+			}else{
+				swal("请先输入正确的手机号码");
+			}
+		};
+		$scope.changeImg = function(){
+			 var imgSrc = $("#imgObj");
+			 var src = imgSrc.attr("src");
+			 imgSrc.attr("src", chgUrl(src));
+		};
+		function chgUrl(url) {
+		    var timestamp = (new Date()).valueOf();
+		    url = url.substring(0, 17);
+		    if ((url.indexOf("&") >= 0)) {
+		      url = url + "×tamp=" + timestamp;
+		    } else {
+		      url = url + "?timestamp=" + timestamp;
+		    }
+		    return url;
+		  }
 	}
 })();

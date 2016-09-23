@@ -22,7 +22,7 @@
 
 	<!-- 创建用户(Create) -->
 	<insert id="createUser" useGeneratedKeys="true" keyProperty="id" parameterType="model.User" >
-		insert into user(username,password,email,phone) values(#{username},#{password},#{email},#{phone})
+		insert into user(username,password,email,phone,code,invitationCode) values(#{username},#{password},#{email},#{phone},#{code},#{invitationCode})
 	</insert>
 	   
 	<!-- 修改用户(Update) -->

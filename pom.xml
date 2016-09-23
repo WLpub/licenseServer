@@ -170,6 +170,13 @@
             <artifactId>commons-codec</artifactId>  
             <version>1.9</version>  
         </dependency> 
+        
+        <!-- 短信发送需要的 -->
+        <dependency>
+          <groupId>commons-httpclient</groupId>
+          <artifactId>commons-httpclient</artifactId>
+          <version>3.1</version>
+      	</dependency>
 	</dependencies>
 
 	<build>

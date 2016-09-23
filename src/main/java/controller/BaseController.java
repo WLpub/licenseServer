@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 
 import model.User;
+import model.UserFilter;
+import service.CodeID;
 import service.UserService;
 
 @Controller
@@ -24,6 +26,8 @@ public class BaseController {
 
 	@Resource
 	private UserService userService;
+	@Resource
+	private CodeID codeID;
 	
 	@RequestMapping(value = {"/","index","index.html","index.jsp"}, method = RequestMethod.GET)
 	public String welcome(HttpSession httpSession) {
@@ -101,17 +105,29 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody JSONObject createUser(@RequestBody User user) {
+	public @ResponseBody JSONObject createUser(@RequestBody UserFilter userFilter,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
-			System.out.println(user);
-			int uId = userService.createUser(user);
-			if(uId>0){
-				ret.put("status", uId);
-			}
-			else{
+			User user = userFilter.getUser();
+			if(!userFilter.getImageCode().equals(httpSession.getAttribute("imageCode"))){
 				ret.put("status", -1);
-				ret.put("errMsg", "创建用户失败，请稍后再试！");
+				ret.put("errMsg","图片验证码错误！");
+			}
+			else if(!userFilter.getPhoneCode().equals(httpSession.getAttribute("phoneCode"))){
+				ret.put("status", -1);
+				ret.put("errMsg","手机验证码错误！");
+			}else{
+				int uId = userService.createUser(user);
+				String serCode = codeID.toSerialCode(uId);
+				user.setCode(serCode);
+				userService.updateUser(user);
+				if(uId>0){
+					ret.put("status", uId);
+				}
+				else{
+					ret.put("status", -1);
+					ret.put("errMsg", "创建用户失败，手机或邮箱重复！");
+				}
 			}
 		} catch (Exception e) {
 			ret.put("status", -1);

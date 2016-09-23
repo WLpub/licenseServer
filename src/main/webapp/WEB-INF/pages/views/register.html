@@ -34,17 +34,17 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">验证码</label>
+			<label class="col-sm-3 control-label">手机验证码</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" name="code" value="" placeholder="必填" ng-model="currentUser.code" ng-minlength="4" ng-maxlength="4" ng-focus required>
+				<input type="text" class="form-control" name="phoneCode" value="" placeholder="必填" ng-model="phoneCode" ng-minlength="4" ng-maxlength="4" ng-focus required>
 			</div>
 			<div class="col-sm-1">
-				<button class="btn btn-success">&nbsp;&nbsp;&nbsp;发送验证码&nbsp;&nbsp;&nbsp;</button>
+				<button class="btn btn-success" ng-click="sendMsg()" ng-valid="!msgSending">&nbsp;&nbsp;&nbsp;<font ng-bind="msgBtnFont"></font>&nbsp;&nbsp;&nbsp;</button>
 			</div>
 			<!-- hidden tips -->
 			<div class="col-sm-5 form-control-static tips">
-				<span ng-show="(registerForm.code.$error.minlength || registerForm.code.$error.maxlength) && !registerForm.code.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入手机验证码</span></span>
-				<span ng-show="registerForm.code.$valid && !registerForm.code.$focused"><i class="fa fa-check"></i></span>
+				<span ng-show="(registerForm.phoneCode.$error.minlength || registerForm.phoneCode.$error.maxlength) && !registerForm.phoneCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入手机验证码</span></span>
+				<span ng-show="registerForm.phoneCode.$valid && !registerForm.phoneCode.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -56,6 +56,21 @@
 			<div class="col-sm-5 form-control-static tips">
 				<span ng-show="(registerForm.invitationCode.$error.minlength || registerForm.invitationCode.$error.maxlength) && !registerForm.invitationCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入邀请码</span></span>
 				<span ng-show="registerForm.invitationCode.$valid && !registerForm.invitationCode.$focused"><i class="fa fa-check"></i></span>
+			</div>
+		</div>
+		<div style="display:none" ng-click="update_p()" id="updateBtn"></div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">验证码</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" name="imageCode" value="" placeholder="必填" ng-model="imageCode" ng-minlength="4" ng-maxlength="4" ng-focus required>
+			</div>
+			<div class="col-sm-2">
+				<img id="imgObj" alt="验证码" src="./code" /><a ng-click="changeImg()">换一张</a>
+			</div>
+			<!-- hidden tips -->
+			<div class="col-sm-5 form-control-static tips">
+				<span ng-show="(registerForm.imageCode.$error.minlength || registerForm.imageCode.$error.maxlength) && !registerForm.imageCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入邀请码</span></span>
+				<span ng-show="registerForm.imageCode.$valid && !registerForm.imageCode.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
