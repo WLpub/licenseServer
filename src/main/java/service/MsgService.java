@@ -14,10 +14,8 @@ import org.apache.commons.httpclient.params.HttpClientParams;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import controller.MsgController;
-
 @Service
-public class MsgSender {
+public class MsgService {
 	/**
 	 * 
 	 * @param url
@@ -35,7 +33,7 @@ public class MsgSender {
 	 * @return 返回值定义参见HTTP协议文档
 	 * @throws Exception
 	 */
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MsgSender.class);
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MsgService.class);
 	private String url = "http://222.73.117.169/msg/";// 应用地址
 	private String account = "N5257871";// 账号
 	private String pswd = "qlLAbZYS7G539d";// 密码

@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import model.User;
 import model.UserFilter;
-import service.CodeID;
+import service.CodeService;
 import service.UserService;
 
 @Controller
@@ -27,7 +27,7 @@ public class BaseController {
 	@Resource
 	private UserService userService;
 	@Resource
-	private CodeID codeID;
+	private CodeService codeID;
 	
 	@RequestMapping(value = {"/","index","index.html","index.jsp"}, method = RequestMethod.GET)
 	public String welcome(HttpSession httpSession) {

@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 
 import model.MsgFilter;
-import service.MsgSender;
+import service.MsgService;
 
 @Controller
 public class MsgController {
 
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MsgSender.class);
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MsgController.class);
 	@Resource
-	private MsgSender msgSender;
+	private MsgService msgSender;
 	
 	@RequestMapping(value = { "/phoneMsg" }, method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody JSONObject getCode(HttpServletRequest req,@RequestBody MsgFilter msgFilter) {
