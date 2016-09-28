@@ -1,14 +1,10 @@
-package product;
-
-import java.util.List;
-
-import model.Price;
+package model;
 
 public class Product {
 	private String name;
 	private String version;
 	private String description;
-	private List<Price> price;
+	private String price;
 	
 	public String getName() {
 		return name;
@@ -28,10 +24,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<Price> getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(List<Price> price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 }
