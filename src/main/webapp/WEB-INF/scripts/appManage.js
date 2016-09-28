@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('uumaiApp',['ngRoute'])
+		.module('uumaiApp',['ngRoute','ngSanitize'])
 		.config(config);
     
 	function config($routeProvider){
@@ -23,21 +23,13 @@
 				}*/
 				controller: 'MainCtrl'
 			})
-			.when('/way', {
-				templateUrl: 'views/way.html',
-				controller: 'WayCtrl'
+			.when('/product', {
+				templateUrl: 'views/product.html',
+				controller: 'ProductCtrl'
 			})
-			.when('/addWay', {
-				templateUrl: 'views/addWay.html',
-				controller: 'AddWayCtrl'
-			})
-			.when('/changeWay', {
-				templateUrl: 'views/changeWay.html',
-				controller: 'ChangeWayCtrl'
-			})
-			.when('/file', {
-				templateUrl: 'views/file.html',
-				controller: 'FileCtrl'
+			.when('/record', {
+				templateUrl: 'views/record.html',
+				controller: 'RecordCtrl'
 			})
 			.otherwise({ redirectTo: '/' });
 	};

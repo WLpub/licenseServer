@@ -1,0 +1,55 @@
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+					我的 LicenseServer <small>你好： <font ng-bind="generalInfo.user.username"></font></small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#/">首页</a></li>
+					<li class="active">产品介绍</li>
+				</ol>
+			</div>
+			<div id="page-inner">
+				<!-- /. ROW  -->
+				<div class="row">
+					<div class="col-md-8">
+						<div class="panel panel-info">
+							<div class="panel-heading" ng-bind="product.name"></div>
+							<div class="panel-body">
+								<div ng-bind-html="product.description">
+								</div>
+							</div>
+							<div class="panel-footer" ng-bind="product.version"></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<div class="panel panel-default">
+							<div class="panel-heading">购买</div>
+							<div class="panel-body">
+								<p>选择时长：<br/>
+								<select class="form-control" ng-model="priceChoose" ng-options="pr as pr.time+'个月' for pr in product.price">
+									<option value="">选择时长</option>
+								</select>
+								</p>
+								<p>输入编号：<br/>
+								<textArea class="form-control"></textArea>
+								</p>
+								<p>共计：<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font ng-bind="priceChoose.point||0"></font>&nbsp;&nbsp;积分
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font ng-bind="priceChoose.money||0"></font>&nbsp;&nbsp;金币
+								</p>	
+							</div>
+							<div class="panel-footer text-right"><div class="btn btn-info">购买</div></div>
+						</div>
+					</div>
+				</div>
+				<footer>
+				<p></p>
+				<p></p>
+				<p>
+					Copyright &copy; 2016.Company name All rights reserved.UUmai
+				</p>
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>

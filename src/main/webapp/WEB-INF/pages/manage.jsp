@@ -27,7 +27,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="./manage#/">
-				<strong><i class="icon fa fa-plane"></i> LicenseServer</strong>
+				<strong><i class="icon fa fa-camera"></i> LicenseServer</strong>
 			</a>
 			<div id="sideNav" href="">
 				<i class="fa fa-bars icon"></i>
@@ -117,18 +117,19 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a href="#/license"><i class="fa fa-dashboard"></i> 我的License</a></li>
+					<li><a href="#/"><i class="fa fa-dashboard"></i> 我的License</a></li>
 					<li class="active">
                         <a ><i class="fa fa-sitemap"></i> 产品<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
                             <li>
-                                <a href="#/ScreenTiger">ScreenTiger</a>
+                                <a href="#/product?id=1">ScreenTiger</a>
                             </li>
                             <li>
-                                <a href="#/ScreenTiger">Other Product</a>
+                                <a href="#/product?id=1">Other Product</a>
                             </li>
 						</ul>
 					</li>
+					<li><a href="#/record"><i class="fa fa-dashboard"></i> 购买记录</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -146,6 +147,7 @@
 	<script src="assets/js/custom-scripts.js"></script>
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/angular-route.min.js"></script>
+	<script src="assets/js/angular-sanitize.min.js"></script>
 	<!-- Metis Menu Js -->
 	<script src="assets/js/sweetalert.min.js"></script>
 	<!-- Custom Js -->

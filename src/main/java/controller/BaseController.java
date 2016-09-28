@@ -117,6 +117,7 @@ public class BaseController {
 				ret.put("status", -1);
 				ret.put("errMsg","手机验证码错误！");
 			}else{
+				user.setPoint(10);
 				int uId = userService.createUser(user);
 				String serCode = codeID.toSerialCode(uId);
 				user.setCode(serCode);
