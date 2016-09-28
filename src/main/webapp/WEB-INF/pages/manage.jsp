@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,7 +27,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="./manage#/">
-				<strong><i class="icon fa fa-plane"></i> LinkedInHR</strong>
+				<strong><i class="icon fa fa-plane"></i> LicenseServer</strong>
 			</a>
 			<div id="sideNav" href="">
 				<i class="fa fa-bars icon"></i>
@@ -114,24 +114,41 @@
 			<!-- /.dropdown -->
 		</ul>
 		</nav>
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li><a href="#/license"><i class="fa fa-dashboard"></i> 我的License</a></li>
+					<li class="active">
+                        <a ><i class="fa fa-sitemap"></i> 产品<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+                            <li>
+                                <a href="#/ScreenTiger">ScreenTiger</a>
+                            </li>
+                            <li>
+                                <a href="#/ScreenTiger">Other Product</a>
+                            </li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<div ng-view></div>
 		<!-- /. PAGE WRAPPER  -->
 	</div>
 	<!-- /. WRAPPER  -->
+</body>
 	<!-- JS Scripts-->
 	<!-- jQuery Js -->
 	<script src="assets/js/jquery-1.10.2.js"></script>
 	<!-- Bootstrap Js -->
 	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.metisMenu.js"></script>
+	<script src="assets/js/custom-scripts.js"></script>
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/angular-route.min.js"></script>
 	<!-- Metis Menu Js -->
-	<script src="assets/js/jquery.metisMenu.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
 	<!-- Custom Js -->
-	<script src="assets/js/custom-scripts.js"></script>
 	<script src="scripts/appManage.js"></script>
 	<script src="scripts/controllers/manage.js"></script>
-</body>
-
 </html>
