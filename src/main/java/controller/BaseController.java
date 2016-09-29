@@ -57,10 +57,11 @@ public class BaseController {
 	public @ResponseBody JSONObject getGeneralInfo(HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
-				if(httpSession.getAttribute("user")==null){
+				User u = (User)httpSession.getAttribute("user");
+				if(u==null){
 					throw new Exception("用户未登录！");
 				}
-				User ur = (User)httpSession.getAttribute("user");
+				User ur = userService.selectUserById(u.getId());
 				ur.setPassword("");
 				ret.put("user", ur);
 				ret.put("status", 0);
