@@ -22,8 +22,8 @@ public class BaseController {
 
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_MANAGE = "manage";
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
-
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
+	
 	@Resource
 	private UserService userService;
 	@Resource

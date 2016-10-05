@@ -4,6 +4,8 @@ public class Record {
 	private Integer id;  
     private Integer userID;  
     private Integer productID;
+    private Integer priceID;
+    private String code;
     private String timestamp;
     
 	public Integer getId() {
@@ -29,5 +31,17 @@ public class Record {
 	}
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
+	}
+	public Integer getPriceID() {
+		return priceID;
+	}
+	public void setPriceID(Integer priceID) {
+		this.priceID = priceID;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

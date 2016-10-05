@@ -4,12 +4,8 @@ public class Price {
 	private int time;//mouths
 	private int money;
 	private int point;
+	private int id;
 
-	public Price(int time,int money, int point){
-		this.time = time;
-		this.money = money;
-		this.point = point;
-	}
 	public int getTime() {
 		return time;
 	}
@@ -27,5 +23,11 @@ public class Price {
 	}
 	public void setPoint(int point) {
 		this.point = point;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

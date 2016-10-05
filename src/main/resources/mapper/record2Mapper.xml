@@ -7,6 +7,8 @@
 		<id column="ID" property="id" jdbcType="INTEGER" />
 		<result column="USERID" property="userID" jdbcType="INTEGER" />
 		<result column="PRODUCTID" property="productID" jdbcType="INTEGER" />
+		<result column="PRICEID" property="priceID" jdbcType="INTEGER" />
+		<result column="CODE" property="code" jdbcType="CHAR" />
 		<result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<!-- 查询单条记录 -->
@@ -16,7 +18,7 @@
 
 	<!-- 创建购买记录(Create) -->
 	<insert id="createRecord" useGeneratedKeys="true" keyProperty="id" parameterType="model.Record" >
-		insert into record(productID,userID) values(#{productID},#{userID})
+		insert into record(productID,userID,code,priceID) values(#{productID},#{userID},#{code},#{priceID})
 	</insert>
 	   
 	<!-- 查询全部用户-->
