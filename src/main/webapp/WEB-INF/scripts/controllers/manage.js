@@ -5,7 +5,8 @@
 		.module('uumaiApp')
 		.controller('MainCtrl', MainCtrl)
 		.controller('ProductCtrl', ProductCtrl)
-		.controller('RecordCtrl', RecordCtrl);
+		.controller('RecordCtrl', RecordCtrl)
+		.controller('CompanyAuthCtrl', CompanyAuthCtrl);
 
 	function MainCtrl($rootScope, $scope){
 		$scope.generalInfo = {
@@ -21,8 +22,12 @@
 				success : function(ret) {
 					if (ret.status > -1) {
 						$scope.generalInfo.user = ret.user;
+						$scope.generalInfo.user.isCompany = ret.user.permission.charAt(2)=='0'?'非':(ret.user.permission.charAt(2)=='1'?'未认证':'认证');
+						$scope.generalInfo.user.companyHref = ret.user.permission.charAt(2)=='0'?'#/':(ret.user.permission.charAt(2)=='1'?'#/companyAuth':'#/companyManage');
 						$scope.generalInfo.user.isGithub = ret.user.permission.charAt(3)=='0'?'未加入':'加入';
+						$scope.generalInfo.user.gitHref = ret.user.permission.charAt(3)=='0'?'#/githubAuth':'#/githubManage';
 						$scope.generalInfo.user.isTeacher = ret.user.permission.charAt(4)=='0'?'未认证':'认证';
+						$scope.generalInfo.user.teacherHref = ret.user.permission.charAt(4)=='0'?'#/teacherAuth':'#/teacherManage';
 						$scope.$apply();
 					} else {
 						$scope.messageText = '获取失败！' + ret.errMsg;
@@ -87,7 +92,7 @@
 						$scope.$apply();
 						swal('购买成功！');
 					} else {
-						swal('购买失败，余额不足！');
+						swal(ret.errMsg);
 					}
 				},
 				error : function(ret) {
@@ -98,19 +103,54 @@
 		};
 		$scope.getProduct();
 	};
-	function RecordCtrl($scope){
-		$scope.jobs=[];
+	function parsePrice(price){
+		var ret = {};
+		price = eval(price);
+		for(var a in price){
+			var p  = price[a];
+			ret[p["id"]] = p;
+		}
+		return ret;
+	}
+	function RecordCtrl($rootScope,$scope){
+		$scope.records=[];
 		$scope.pageStart = 1;
 		$scope.pages = [1];
 		$scope.pageTotal = 10;
-		$scope.getJobs = function() {
+		$scope.productsJson = {};
+		$scope.getProducts = function(){
 			$.ajax({
 				type : 'POST',
-				url : "./getResumeByUserId",
+				url : "./getProducts",
+				data : JSON.stringify({}),
+				success : function(ret) {
+					if (ret.status > -1) {
+						$scope.products = ret.products;
+						for(var a in $scope.products){
+							var product = $scope.products[a];
+							product['price'] = parsePrice(product["price"]);
+							$scope.productsJson[product['id']] = product;
+						}
+						$rootScope.productsJson = $scope.productsJson;
+						$scope.$apply();
+					} else {
+						swal('获取产品信息失败：'+ret.errMsg);
+					}
+				},
+				error : function(ret) {
+					swal('获取产品信息失败！');
+				},
+				contentType : 'application/json'
+			});
+		}
+		$scope.getRecords = function() {
+			$.ajax({
+				type : 'POST',
+				url : "./getRecord",
 				data : JSON.stringify({'start':($scope.pageStart*10-10)||0,'resume':{}}),
 				success : function(ret) {
 					if (ret.status > -1) {
-						$scope.jobs = ret.resumes;
+						$scope.records = ret.records;
 						$scope.pages = [];
 						$scope.pageTotal = ret.count||10;
 						for(var i=0;i<$scope.pageTotal/10;i++){
@@ -118,11 +158,11 @@
 						}
 						$scope.$apply();
 					} else {
-						swal('获取簡歷信息失败：'+ret.errMsg);
+						swal('获取购买记录信息失败：'+ret.errMsg);
 					}
 				},
 				error : function(ret) {
-					swal('获取渠道信息失败！');
+					swal('获取购买记录信息失败！');
 				},
 				contentType : 'application/json'
 			});
@@ -130,17 +170,47 @@
 		$scope.changePage = function(page){
 			if(page>0&&$scope.pageTotal>(page-1)*10){
 				$scope.pageStart = page;
-				$scope.getChannel();
+				$scope.getRecords();
 			}else if(page==-1&&$scope.pageStart>1){
 				$scope.pageStart--;
-				$scope.getChannel();
+				$scope.getRecords();
 			}else if(page==-2&&$scope.pageTotal>$scope.pageStart*10){
 				$scope.pageStart++;
-				$scope.getChannel();
+				$scope.getRecords();
 			}else{
 				swal("沒有更多數據！");
 			}
 		};
-		$scope.getJobs();
+		if(!!!$rootScope.productsJson||$rootScope.productsJson=={}){
+			$scope.getProducts();
+		}else{
+			$scope.productsJson = $rootScope.productsJson;
+		}
+		$scope.getRecords();
+	};
+	
+	function CompanyAuthCtrl($scope){
+		var options = {
+			target : 'nm_iframe', // 把服务器返回的内容放入id为output的元素中
+			// beforeSubmit: showRequest, //提交前的回调函数
+			success : function(ret) {
+				console.log(ret);
+				if (ret.status < 0)
+					swal("提交失败：" + ret.errMsg);
+				else
+					swal("提交成功!");
+			}, // 提交后的回调函数
+			url: "./uploadCompany", //默认是form的action， 如果申明，则会覆盖
+			// type: type, //默认是form的method（get or post），如果申明，则会覆盖
+			dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+			clearForm: true, //成功提交后，清除所有表单元素的值
+			resetForm: true //成功提交后，重置所有表单元素的值
+			// timeout: 3000 //限制请求的时间，当请求大于3秒后，跳出请求
+		};
+	    $scope.submitComapny = function(){
+	    	console.log(1);
+	    	$("#companyForm").ajaxSubmit(options);
+	    	return false;
+	    };
 	}
 })();

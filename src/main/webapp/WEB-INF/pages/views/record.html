@@ -2,7 +2,7 @@
 <div id="page-wrapper">
 	<div class="header">
 		<h3 class="page-header">
-			我的简历 <small></small>
+			购买记录 <small></small>
 		</h3>
 		<ol class="breadcrumb">
 			<li><a href="#/">首页</a></li>
@@ -24,11 +24,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="job in jobs">
-								<td ng-bind="job.name">张三</td>
-								<td ng-bind="jobNameJson[job.channel_id]">51job</td>
-								<td ng-bind="job.jobname">java工程师</td>
-								<td ng-bind="job.deliever_date">2015-12-05</td>
+							<tr ng-repeat="record in records">
+								<td ng-bind="productsJson[record.productID]['name']"></td>
+								<td ng-bind="productsJson[record.productID]['version']"></td>
+								<td ng-bind="productsJson[record.productID]['price'][record.priceID]['time']+'个月'"></td>
+								<td ng-bind="record.timestamp"></td>
 							</tr>
 						</tbody>
 					</table>

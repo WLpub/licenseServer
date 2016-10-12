@@ -56,7 +56,8 @@
 			username: "",
 			email: "",
 			password: "",
-			phone: ""
+			phone: "",
+			permission:""
 		};
 		
 		// btn msg

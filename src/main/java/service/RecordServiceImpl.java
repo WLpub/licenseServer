@@ -26,8 +26,13 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public List<Record> selectRecordByUserID(Integer userID) {  
-		return recordDao.selectRecordByUserID(userID);  
+	public List<Record> selectRecordByUserID(Integer userID,Integer start) {  
+		return recordDao.selectRecordByUserID(userID,start);  
     }
+
+	@Override
+	public int getTotalCount(Integer userID) {
+		return recordDao.getTotalCount(userID);
+	}
 
 }

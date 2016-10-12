@@ -22,7 +22,12 @@
 	</insert>
 	   
 	<!-- 查询全部用户-->
-	<select id="selectRecordByUserID" parameterType="int" resultType="model.Record">
-		SELECT * FROM record WHERE userID = #{userID}
+	<select id="selectRecordByUserID" resultType="model.Record">
+		SELECT * FROM record WHERE userID = #{userID} limit #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCount" parameterType="int" resultType="int">
+		SELECT count(*) FROM record WHERE userID = #{userID}
 	</select>
 </mapper>

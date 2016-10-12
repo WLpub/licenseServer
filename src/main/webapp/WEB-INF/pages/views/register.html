@@ -96,7 +96,16 @@
 				<span ng-show="registerForm.passwordCertain.$valid && !registerForm.passwordCertain.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
-
+		<div class="form-group">
+			<label class="col-sm-3 control-label"></label>
+			<div class="col-sm-4">
+				<div class="checkbox">
+				  <label>
+				    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="currentUser.permission">企业用户
+				  </label>
+				</div>
+			</div>
+		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-8">
 				<button type="submit" class="btn btn-primary" ng-click="submitRegister()" ng-disabled="!registerForm.$valid">同意以下协议并注册</button>

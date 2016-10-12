@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CompanyDao">
+<!--设置model类和数据库中表的字段一一对应，注意数据库字段和model类中的字段名称不致，此处一定要！-->
+	<resultMap id="BaseResultMap" type="model.Company">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="CHAR" />
+		<result column="USERID" property="userID" jdbcType="INTEGER" />
+		<result column="LICENSE" property="license" jdbcType="CHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询单条记录 -->
+	<select id="selectCompanyByID" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM company WHERE ID = #{id}
+	</select>
+
+	<!-- 创建购买记录(Create) -->
+	<insert id="createCompany" useGeneratedKeys="true" keyProperty="id" parameterType="model.Company" >
+		insert into company(name,license,userID) values(#{name},#{license},#{userID})
+	</insert>
+	   
+	<!-- 查询全部用户-->
+	<select id="selectCompanyByUserID" resultType="model.Company">
+		SELECT * FROM company WHERE userID = #{userID} limit #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCount" parameterType="int" resultType="int">
+		SELECT count(*) FROM company WHERE userID = #{userID}
+	</select>
+</mapper>

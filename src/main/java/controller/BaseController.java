@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 import model.User;
 import model.UserFilter;
 import service.CodeService;
+import service.PermissionService;
 import service.UserService;
 
 @Controller
@@ -26,6 +27,8 @@ public class BaseController {
 	
 	@Resource
 	private UserService userService;
+	@Resource
+	private PermissionService permissionService;
 	@Resource
 	private CodeService codeID;
 	
@@ -119,6 +122,10 @@ public class BaseController {
 				ret.put("errMsg","手机验证码错误！");
 			}else{
 				user.setPoint(10);
+				if(user.getPermission()!=null&&user.getPermission().equals("1")){
+					user.setPermission(permissionService.setCompony(true));
+				}
+				user.setBalance(0);
 				int uId = userService.createUser(user);
 				String serCode = codeID.toSerialCode(uId);
 				user.setCode(serCode);

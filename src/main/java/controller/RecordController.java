@@ -20,11 +20,11 @@ import com.alibaba.fastjson.JSONObject;
 import model.Price;
 import model.Product;
 import model.Record;
+import model.RecordFilter;
 import model.User;
 import service.ProductService;
 import service.RecordService;
 import service.UserService;
-import util.ProductCache;
 
 @Controller
 public class RecordController {
@@ -44,9 +44,8 @@ public class RecordController {
 		JSONObject ret = new JSONObject();
 		try {
 			if(products==null){
-				
+				products = productService.getProducts();
 			}
-			products = productService.getProducts();
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
@@ -104,14 +103,15 @@ public class RecordController {
 	}
 	
 	@RequestMapping(value = "/getRecord", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody JSONObject getRecord(HttpSession httpSession) {
+	public @ResponseBody JSONObject getRecord(@RequestBody RecordFilter recordFilter,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
 			}
-			ret.put("records",recordService.selectRecordByUserID(ur.getId()));
+			ret.put("records",recordService.selectRecordByUserID(ur.getId(),recordFilter.getStart()));
+			ret.put("count",recordService.getTotalCount(ur.getId()));
 			ret.put("status", 1);
 		} catch (Exception e) {
 			e.printStackTrace();

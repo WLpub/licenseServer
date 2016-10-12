@@ -1,0 +1,57 @@
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div class="header">
+		<h3 class="page-header">
+			企业用户认证 <small></small>
+		</h3>
+		<ol class="breadcrumb">
+			<li><a href="#/">首页</a></li>
+			<li class="active"><a href="#/companyAuth">企业用户认证</a></li>
+		</ol>
+	</div>
+	<div id="page-inner">
+	<br/>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1 well ">
+				<form class="form-horizontal" enctype="multipart/form-data" id="companyForm" method="POST"  action="uploadCompany">
+					<h3>&nbsp;&nbsp;&nbsp;&nbsp;填写认证信息：</h3>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">企业名称:</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" name="companyName">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">企业名称:</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">企业名称:</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">企业执照:</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="file" name="file" id="file">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label"></label>
+						<div class="col-sm-5">
+							<button type="button" class="btn btn-info" ng-click="submitComapny()">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<footer>
+			<p>Copyright &copy; 2016.Company name All rights reserved.UUmai</p>
+		</footer>
+		<!-- /. ROW  --><iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>  
+	</div>
+</div>
+<!-- /. PAGE INNER  -->

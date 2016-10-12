@@ -31,6 +31,30 @@
 				templateUrl: 'views/record.html',
 				controller: 'RecordCtrl'
 			})
+			.when('/githubAuth', {
+				templateUrl: 'views/githubAuth.html',
+				controller: 'GithubAuthCtrl'
+			})
+			.when('/githubManage', {
+				templateUrl: 'views/githubManage.html',
+				controller: 'GithubManageCtrl'
+			})
+			.when('/teacherAuth', {
+				templateUrl: 'views/teacherAuth.html',
+				controller: 'TeacherAuthCtrl'
+			})
+			.when('/teacherManage', {
+				templateUrl: 'views/teacherManage.html',
+				controller: 'TeacherManageCtrl'
+			})
+			.when('/companyAuth', {
+				templateUrl: 'views/companyAuth.html',
+				controller: 'CompanyAuthCtrl'
+			})
+			.when('/companyManage', {
+				templateUrl: 'views/companyManage.html',
+				controller: 'CompanyManageCtrl'
+			})
 			.otherwise({ redirectTo: '/' });
 	};
 })();
