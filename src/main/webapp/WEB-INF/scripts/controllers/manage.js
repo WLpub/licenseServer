@@ -6,7 +6,8 @@
 		.controller('MainCtrl', MainCtrl)
 		.controller('ProductCtrl', ProductCtrl)
 		.controller('RecordCtrl', RecordCtrl)
-		.controller('CompanyAuthCtrl', CompanyAuthCtrl);
+		.controller('CompanyAuthCtrl', CompanyAuthCtrl)
+		.controller('CompanyManageCtrl', CompanyManageCtrl);
 
 	function MainCtrl($rootScope, $scope){
 		$scope.generalInfo = {
@@ -208,9 +209,56 @@
 			// timeout: 3000 //限制请求的时间，当请求大于3秒后，跳出请求
 		};
 	    $scope.submitComapny = function(){
-	    	console.log(1);
 	    	$("#companyForm").ajaxSubmit(options);
 	    	return false;
 	    };
-	}
+	};
+	
+	function CompanyManageCtrl($scope){
+		$scope.company = {'license':'defalut.jpg'};
+		$scope.getCompany = function(){
+			$.ajax({
+				type : 'POST',
+				url : "./getCompany",
+				data : JSON.stringify({'start':0}),
+				success : function(ret) {
+					if (ret.status > -1) {
+						$scope.company = ret.companys[0];
+						$scope.$apply();
+					} else {
+						swal('获取执照信息失败：'+ret.errMsg);
+					}
+				},
+				error : function(ret) {
+					swal('获取执照信息失败！');
+				},
+				contentType : 'application/json'
+			});
+		};
+		
+
+		var options = {
+			target : 'nm_iframe', // 把服务器返回的内容放入id为output的元素中
+			// beforeSubmit: showRequest, //提交前的回调函数
+			success : function(ret) {
+				console.log(ret);
+				if (ret.status < 0)
+					swal("提交失败：" + ret.errMsg);
+				else
+					swal("提交成功!");
+			}, // 提交后的回调函数
+			url : "./mailCompany", // 默认是form的action， 如果申明，则会覆盖
+			// type: type, //默认是form的method（get or post），如果申明，则会覆盖
+			dataType : "json", // html(默认), xml, script, json...接受服务端返回的类型
+			clearForm : true, // 成功提交后，清除所有表单元素的值
+			resetForm : true
+			// 成功提交后，重置所有表单元素的值
+			// timeout: 3000 //限制请求的时间，当请求大于3秒后，跳出请求
+		};
+		$scope.sendMail = function(){
+			$("#companyForm").ajaxSubmit(options);
+	    	return false;
+		}
+		$scope.getCompany();
+	};
 })();

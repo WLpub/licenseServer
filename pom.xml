@@ -177,6 +177,20 @@
           <artifactId>commons-httpclient</artifactId>
           <version>3.1</version>
       	</dependency>
+      	
+      	<!-- 邮件发送依赖包 -->
+      	<dependency>
+          <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
+          <version>1.4.7</version>
+      	</dependency>
+      	
+      	<!-- excel -->
+      	<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.15</version>
+		</dependency>
 	</dependencies>
 
 	<build>

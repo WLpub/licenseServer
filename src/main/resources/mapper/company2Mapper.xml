@@ -18,7 +18,7 @@
 
 	<!-- 创建购买记录(Create) -->
 	<insert id="createCompany" useGeneratedKeys="true" keyProperty="id" parameterType="model.Company" >
-		insert into company(name,license,userID) values(#{name},#{license},#{userID})
+		INSERT INTO company (name,license,userID) VALUES (#{name},#{license},#{userID}) ON DUPLICATE KEY UPDATE license = #{license}
 	</insert>
 	   
 	<!-- 查询全部用户-->

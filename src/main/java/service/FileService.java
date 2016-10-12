@@ -30,4 +30,8 @@ public class FileService {
 		}
 		return fileName;
 	}
+	
+	public String getPath(){
+		return path;
+	}
 }
