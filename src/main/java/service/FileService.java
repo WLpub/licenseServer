@@ -8,9 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileService {
-	private static String t=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-	private static String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
-	private static Date date = new Date();
+	private String t=Thread.currentThread().getContextClassLoader().getResource("").getPath();
+	private String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
+	private Date date = new Date();
 	
 	public String keepFile(MultipartFile file){
 		String fileName = "";

@@ -23,6 +23,7 @@ public class BaseController {
 
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_MANAGE = "manage";
+	private static final String VIEW_ADMIN = "admin";
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 	
 	@Resource
@@ -31,6 +32,11 @@ public class BaseController {
 	private PermissionService permissionService;
 	@Resource
 	private CodeService codeID;
+	
+	@RequestMapping(value = {"/test"}, method = RequestMethod.GET)
+	public String test(HttpSession httpSession) {
+			return "testJSTL";
+	}
 	
 	@RequestMapping(value = {"/","index","index.html","index.jsp"}, method = RequestMethod.GET)
 	public String welcome(HttpSession httpSession) {
@@ -53,6 +59,16 @@ public class BaseController {
 			return "redirect:/#/login";
 		}else{
 			return VIEW_MANAGE;
+		}
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admin(HttpSession httpSession) {
+		// Spring uses InternalResourceViewResolver and return back manage.jsp
+		if(httpSession.getAttribute("user")==null){
+			return "redirect:/#/login";
+		}else{
+			return VIEW_ADMIN;
 		}
 	}
 	
