@@ -247,7 +247,7 @@
 				else
 					swal("提交成功!");
 			}, // 提交后的回调函数
-			url : "./mailCompany", // 默认是form的action， 如果申明，则会覆盖
+			url : "./createLicense", // 默认是form的action， 如果申明，则会覆盖
 			// type: type, //默认是form的method（get or post），如果申明，则会覆盖
 			dataType : "json", // html(默认), xml, script, json...接受服务端返回的类型
 			clearForm : true, // 成功提交后，清除所有表单元素的值

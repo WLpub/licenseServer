@@ -24,4 +24,6 @@ public interface LicenseDao {
 	public int getTotalCountByStatusUserID(@Param("userID")Integer userID,@Param("status") String status);
 	
 	public int getTotalCount();
+
+	public void updateLicenseStatus(License license);
 }

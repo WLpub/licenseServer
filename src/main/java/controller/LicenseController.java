@@ -19,6 +19,7 @@ import model.LicenseFilter;
 import model.User;
 import service.FileService;
 import service.LicenseService;
+import thread.ThreadVariables;
 
 @Controller
 public class LicenseController {
@@ -29,7 +30,7 @@ public class LicenseController {
 	@Resource
 	private FileService fileService;
 	
-	@RequestMapping(value = "/createLicense", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/createLicense", method = RequestMethod.POST)
 	public @ResponseBody JSONObject createLicense(@RequestParam("file") MultipartFile file,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
@@ -41,6 +42,7 @@ public class LicenseController {
 			String fileName = fileService.keepFile(file,ur.getId());
 			license.setUserID(ur.getId());
 			license.setFile(fileName);
+			license.setStatus("0");
 			int licenseID = licenseService.createLicense(license);
 			if(licenseID<0)
 				throw new Exception("创建失败，请重试！");
@@ -57,7 +59,7 @@ public class LicenseController {
 	}
 	
 	@RequestMapping(value = "/getLicenseByUserID", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody JSONObject getRecord(@RequestBody LicenseFilter licenseFilter,HttpSession httpSession) {
+	public @ResponseBody JSONObject getLicenseByUserID(@RequestBody LicenseFilter licenseFilter,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
 			User ur = (User)httpSession.getAttribute("user");
@@ -66,6 +68,54 @@ public class LicenseController {
 			}
 			ret.put("licenses",licenseService.selectLicenseByUserID(ur.getId(),licenseFilter.getStart()));
 			ret.put("count",licenseService.getTotalCountByUserID(ur.getId()));
+			ret.put("status", 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(e.getMessage());
+			ret.put("status", -1);
+			ret.put("errMsg", e.getMessage());
+			return ret;
+		}
+		return ret;
+	}
+	
+	@RequestMapping(value = "/getLicenseByStatus", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody JSONObject getLicenseByStatus(@RequestBody LicenseFilter licenseFilter,HttpSession httpSession) {
+		JSONObject ret = new JSONObject();
+		try {
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录！");
+			}
+			ret.put("licenses",licenseService.selectLicenseByStatus(licenseFilter.getLicense().getStatus(),licenseFilter.getStart()));
+			ret.put("count",licenseService.getTotalCountByStatus(licenseFilter.getLicense().getStatus()));
+			ret.put("status", 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(e.getMessage());
+			ret.put("status", -1);
+			ret.put("errMsg", e.getMessage());
+			return ret;
+		}
+		return ret;
+	}
+	
+	@RequestMapping(value = "/updateLicenseStatus", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody JSONObject updateLicenseStatus(@RequestBody License license,HttpSession httpSession) {
+		JSONObject ret = new JSONObject();
+		try {
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录！");
+			}
+			System.out.println(license.getStatus());
+			if(!license.getStatus().equals("1")){
+				license.setResult("");
+			}else{
+				ThreadVariables.licenseList.add(license.getFile());
+				license.setResult(license.getFile());
+			}
+			licenseService.updateLicenseStatus(license);
 			ret.put("status", 1);
 		} catch (Exception e) {
 			e.printStackTrace();

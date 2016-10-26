@@ -57,4 +57,10 @@ public class LicenseServiceImpl implements LicenseService {
 	public int getTotalCountByStatusUserID(String status, Integer userID) {
 		return licenseDao.getTotalCountByStatusUserID(userID,status);
 	}
+
+	@Override
+	public void updateLicenseStatus(License license) {
+		licenseDao.updateLicenseStatus(license);
+		return;
+	}
 }

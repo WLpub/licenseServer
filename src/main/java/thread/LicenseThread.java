@@ -6,7 +6,6 @@ import java.util.List;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-import org.springframework.web.multipart.MultipartFile;
 
 import service.FileService;  
   
@@ -25,7 +24,7 @@ public class LicenseThread  extends Thread {
     @Autowired  
     private FileService fileService;  
   
-    private List<MultipartFile> tempList = new ArrayList<MultipartFile>();
+    private List<String> tempList = new ArrayList<String>();
     
     public void run() {  
         // 防止多個Thread同時進行數據庫操作造成資源消耗過多  
@@ -36,7 +35,7 @@ public class LicenseThread  extends Thread {
         	logger.error(e1.getMessage());
         }  
         logger.info("LicenseThread Thread Is Started。。。");  
-        List<MultipartFile> standbyList = new ArrayList<MultipartFile>();  
+        List<String> standbyList = new ArrayList<String>();  
         // 循环执行任务  
         while (true) {  
         	System.out.println("checking file list!");
@@ -46,7 +45,7 @@ public class LicenseThread  extends Thread {
   
                     for (int i = 0; i < standbyList.size(); i++) {  
                         try {  
-                            System.out.println(standbyList.get(i).getOriginalFilename()+" dealing with!");
+                            System.out.println(standbyList.get(i)+": dealing with!");
                         } catch (Exception e) {  
                             logger.error(e.toString(), e);  
                             continue;  
@@ -72,9 +71,9 @@ public class LicenseThread  extends Thread {
      *  
      * @param standbyList 
      */  
-    private void getTask(List<MultipartFile> standbyList) {  
+    private void getTask(List<String> standbyList) {  
         // 获取高优先级发送任务  
-        tempList = new ArrayList<MultipartFile>(ThreadVariables.licenseList);  
+        tempList = new ArrayList<String>(ThreadVariables.licenseList);  
         ThreadVariables.licenseList.removeAll(tempList);  
         standbyList.addAll(tempList);  
         // 清空临时列表  

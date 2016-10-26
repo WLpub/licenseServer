@@ -2,11 +2,18 @@
 <div id="page-wrapper">
 	<div class="header">
 		<h3 class="page-header">
-			购买记录 <small></small>
+			License处理<small></small>
 		</h3>
 		<ol class="breadcrumb">
 			<li><a href="#/">首页</a></li>
-			<li class="active"><a href="#/record">购买记录</a></li>
+			<li class="active"><a href="#/record">License处理</a></li>
+			<li class="pull-right">
+				<select ng-model="statusChoosed" ng-change="getLicense()">
+					<option value="0">未处理</option>
+					<option value="1">已处理</option>
+					<option value="-1">审核失败</option>
+				</select>
+			</li>
 		</ol>
 	</div>
 	<div id="page-inner">
@@ -17,18 +24,26 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr class="info">
-								<th>购买产品</th>
-								<th>版本</th>
-								<th>购买时长</th>
-								<th>购买时间</th>
+								<th>用户编号</th>
+								<th>原文件</th>
+								<th>License</th>
+								<th>申请时间</th>
+								<th>状态</th>
+								<th>处理操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="record in records">
-								<td ng-bind="productsJson[record.productID]['name']"></td>
-								<td ng-bind="productsJson[record.productID]['version']"></td>
-								<td ng-bind="productsJson[record.productID]['price'][record.priceID]['time']+'个月'"></td>
-								<td ng-bind="record.timestamp"></td>
+							<tr ng-repeat="license in licenses">
+								<td ng-bind="license.userID"></td>
+								<td><a ng-href="{{'getImage?fileName='+license.file}}"><span class="glyphicon glyphicon-file"></span></a></td>
+								<td><a ng-href="{{'getImage?fileName='+license.result}}"><span class="glyphicon glyphicon-file"></span></a></td>
+								<td ng-bind="license.timestamp"></td>
+								<td ng-bind="statusTrans[license.status]"></td>
+								<td>
+									<select class="form-control" ng-model="license.statusChanged"  ng-change="changeStatus(license)" ng-options="status.value as status.name for status in statusList">
+										<option value="">更改状态</option>
+									</select>
+								</td>
 							</tr>
 						</tbody>
 					</table>

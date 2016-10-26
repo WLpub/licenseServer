@@ -18,7 +18,7 @@
 
 	<!-- 创建购买记录(Create) -->
 	<insert id="createLicense" useGeneratedKeys="true" keyProperty="id" parameterType="model.License" >
-		insert into license(file,result,userID,status) values(#{file},#{result},#{userID},#{status})
+		insert into license(file,userID,status) values(#{file},#{userID},#{status})
 	</insert>
 	   
 	<!-- 查询全部用户-->
@@ -50,4 +50,8 @@
 	<select id="getTotalCount" parameterType="String" resultType="int">
 		SELECT count(*) FROM license
 	</select>
+	
+	<update id="updateLicenseStatus" parameterType="model.License">
+		update license SET status=#{status},result=#{result} where ID=#{id}
+	</update>
 </mapper>

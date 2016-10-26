@@ -22,4 +22,6 @@ public interface LicenseService {
 	List<License> selectLicenseByStatus(String status,Integer start);
 	
 	List<License> selectLicenseByStatusUserID(Integer userID,String status,Integer start);
+
+	void updateLicenseStatus(License license);
 }
