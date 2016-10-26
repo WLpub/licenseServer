@@ -3,7 +3,7 @@ package service;
 import org.springframework.stereotype.Service;
 
 /**
- * 获取用户的状态：0-无，1-未认证/等待认证，2-认证<br/>
+ * 获取用户的状态：0-无，1等待认证，2-认证,3-失败<br/>
  * 1) 是否购买过商品 <br/>
  * 2) 是否为教师 <br/>
  * 3) 是否是认证过的github开源用户 <br/>
@@ -85,7 +85,7 @@ public class PermissionService {
 	
 	public String setComponyAuth(boolean per){
 		StringBuilder strBuilder = new StringBuilder(this.permission);
-		strBuilder.setCharAt(2, per?'2':'0');
+		strBuilder.setCharAt(2, per?'2':'3');
 		this.permission= strBuilder.toString();
 		return this.permission;
 	}

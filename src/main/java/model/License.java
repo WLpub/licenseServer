@@ -1,29 +1,30 @@
 package model;
 
-public class Company {
-	private Integer id;
-	private Integer userID;
-	private String status;//0:未认证，1：通过，-1：拒绝
-	private String name;
-	private String license;
-	private String timestamp;
-	public Integer getId() {
+public class License {
+	private Integer id;  
+    private String file;  
+    private String result;
+    private Integer userID;
+    private String status;
+    private String timestamp;
+
+    public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getFile() {
+		return file;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFile(String file) {
+		this.file = file;
 	}
-	public String getLicense() {
-		return license;
+	public String getResult() {
+		return result;
 	}
-	public void setLicense(String license) {
-		this.license = license;
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public Integer getUserID() {
 		return userID;

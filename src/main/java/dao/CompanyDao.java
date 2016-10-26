@@ -14,4 +14,10 @@ public interface CompanyDao {
 	public List<Company> selectCompanyByUserID(@Param("userID")Integer userID,@Param("start")Integer start);
 
 	public int getTotalCount(Integer userID);
+
+	public List<Company> selectCompanyByStatus(@Param("start")Integer start,@Param("status")String status);
+
+	public int getCountByStatus(@Param("status")String status);
+
+	public void updateCompanyStatus(@Param("id")Integer id,@Param("userID")Integer userID,@Param("status")String status,@Param("permission")String permission);
 }

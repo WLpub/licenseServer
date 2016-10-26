@@ -23,8 +23,8 @@
 				success : function(ret) {
 					if (ret.status > -1) {
 						$scope.generalInfo.user = ret.user;
-						$scope.generalInfo.user.isCompany = ret.user.permission.charAt(2)=='0'?'非':(ret.user.permission.charAt(2)=='1'?'未认证':'认证');
-						$scope.generalInfo.user.companyHref = ret.user.permission.charAt(2)=='0'?'#/':(ret.user.permission.charAt(2)=='1'?'#/companyAuth':'#/companyManage');
+						$scope.generalInfo.user.isCompany = ret.user.permission.charAt(2)=='0'?'非':(ret.user.permission.charAt(2)=='1'?'未认证':(ret.user.permission.charAt(2)=='2'?'认证':'认证失败'));
+						$scope.generalInfo.user.companyHref = ret.user.permission.charAt(2)=='0'?'#/':(ret.user.permission.charAt(2)=='1'?'#/companyAuth':(ret.user.permission.charAt(2)=='2'?'#/companyManage':'#/companyAuth'));
 						$scope.generalInfo.user.isGithub = ret.user.permission.charAt(3)=='0'?'未加入':'加入';
 						$scope.generalInfo.user.gitHref = ret.user.permission.charAt(3)=='0'?'#/githubAuth':'#/githubManage';
 						$scope.generalInfo.user.isTeacher = ret.user.permission.charAt(4)=='0'?'未认证':'认证';
@@ -148,7 +148,7 @@
 			$.ajax({
 				type : 'POST',
 				url : "./getRecord",
-				data : JSON.stringify({'start':($scope.pageStart*10-10)||0,'resume':{}}),
+				data : JSON.stringify({'start':($scope.pageStart*10-10)||0,'record':{}}),
 				success : function(ret) {
 					if (ret.status > -1) {
 						$scope.records = ret.records;

@@ -30,4 +30,19 @@
 	<select id="getTotalCount" parameterType="int" resultType="int">
 		SELECT count(*) FROM company WHERE userID = #{userID}
 	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="selectCompanyByStatus" resultType="model.Company">
+		SELECT * FROM company WHERE status = #{status} limit #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getCountByStatus" resultType="int">
+		SELECT count(*) FROM company WHERE status = #{status}
+	</select>
+	
+	<update id="updateCompanyStatus">
+		update company SET status=#{status} where ID=#{id};
+		update user SET permission=#{permission} where ID=#{userID};
+	</update>
 </mapper>

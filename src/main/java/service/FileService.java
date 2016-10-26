@@ -31,6 +31,26 @@ public class FileService {
 		return fileName;
 	}
 	
+	public String keepFile(MultipartFile file,int userID){
+		String fileName = "";
+		if (!file.isEmpty()) {
+            try {
+            	String oriName = file.getOriginalFilename();
+                //如果名称不为"",说明该文件存在，否则说明该文件不存在  
+                if(oriName.trim() !=""){  
+                	String prefix=fileName.substring(fileName.lastIndexOf("."));
+                    //重命名上传后的文件名  
+                    fileName = date.getTime() + userID+prefix;  
+                    //定义上传路径  
+                    File localFile = new File(path+fileName);  
+                    file.transferTo(localFile);
+                }  
+            } catch (Exception e) {
+            }
+		}
+		return fileName;
+	}
+	
 	public String getPath(){
 		return path;
 	}

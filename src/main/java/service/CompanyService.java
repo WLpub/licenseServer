@@ -13,4 +13,10 @@ public interface CompanyService {
 
 	int getTotalCount(Integer userID);
 
+	List<Company> selectCompanyByStatus(Integer start,String status);
+
+	int getCountByStatus(String status);
+
+	void updateCompanyStatus(Company company,String permission);
+
 }

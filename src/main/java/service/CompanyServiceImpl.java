@@ -35,4 +35,20 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyDao.getTotalCount(userID);
 	}
 
+	@Override
+	public List<Company> selectCompanyByStatus(Integer start,String status) {
+		return companyDao.selectCompanyByStatus(start, status);
+	}
+
+	@Override
+	public int getCountByStatus(String status) {
+		return companyDao.getCountByStatus(status);
+	}
+
+	@Override
+	public void updateCompanyStatus(Company company,String permission) {
+		companyDao.updateCompanyStatus(company.getId(),company.getUserID(),company.getStatus(),permission);
+		return;
+	}
+
 }

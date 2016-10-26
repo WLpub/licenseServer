@@ -23,6 +23,12 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<!-- 启动配置文件处理线程 -->
+	<servlet>  
+        <servlet-name>bootstrapper</servlet-name>  
+        <servlet-class>thread.BootStrapper</servlet-class>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
 	<!-- 拦截设置 -->
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>

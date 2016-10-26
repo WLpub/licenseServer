@@ -116,19 +116,17 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a href="#/"><i class="fa fa-dashboard"></i> 我的License</a></li>
 					<li class="active">
-                        <a ><i class="fa fa-sitemap"></i> 产品<span class="fa arrow"></span></a>
+                        <a ><i class="fa fa-sitemap"></i> 用户审核<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
                             <li>
-                                <a href="#/product?id=1">ScreenTiger</a>
+                                <a href="#/qlifEval">企业资格审核</a>
                             </li>
                             <li>
-                                <a href="#/product?id=1">Other Product</a>
+                                <a href="#/licsExam">License审核</a>
                             </li>
 						</ul>
 					</li>
-					<li><a href="#/record"><i class="fa fa-dashboard"></i> 购买记录</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -146,11 +144,10 @@
 	<script src="assets/js/custom-scripts.js"></script>
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/angular-route.min.js"></script>
-	<script src="assets/js/angular-sanitize.min.js"></script>
 	<script src="assets/js/jquery.form.min.js"></script>
 	<!-- Metis Menu Js -->
 	<script src="assets/js/sweetalert.min.js"></script>
 	<!-- Custom Js -->
-	<script src="scripts/appManage.js"></script>
-	<script src="scripts/controllers/manage.js"></script>
+	<script src="scripts/appAdmin.js"></script>
+	<script src="scripts/controllers/admin.js"></script>
 </html>

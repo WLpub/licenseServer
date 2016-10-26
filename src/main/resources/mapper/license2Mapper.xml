@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.LicenseDao">
+<!--设置model类和数据库中表的字段一一对应，注意数据库字段和model类中的字段名称不致，此处一定要！-->
+	<resultMap id="BaseResultMap" type="model.License">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="USERID" property="userID" jdbcType="INTEGER" />
+		<result column="FILE" property="file" jdbcType="CHAR" />
+		<result column="RESULT" property="result" jdbcType="CHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询单条记录 -->
+	<select id="selectLicenseByID" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM license WHERE ID = #{id}
+	</select>
+
+	<!-- 创建购买记录(Create) -->
+	<insert id="createLicense" useGeneratedKeys="true" keyProperty="id" parameterType="model.License" >
+		insert into license(file,result,userID,status) values(#{file},#{result},#{userID},#{status})
+	</insert>
+	   
+	<!-- 查询全部用户-->
+	<select id="selectLicenseByUserID" resultType="model.License">
+		SELECT * FROM license WHERE userID = #{userID} limit #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="selectLicenseByStatus" resultType="model.License">
+		SELECT * FROM license WHERE status = #{status} limit #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="selectLicenseByStatusUserID" resultType="model.License">
+		SELECT * FROM license WHERE status = #{status} and userID = #{userID} LIMIT #{start},10
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCountByUserID" parameterType="int" resultType="int">
+		SELECT count(*) FROM license WHERE userID = #{userID}
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCountByStatus" parameterType="String" resultType="int">
+		SELECT count(*) FROM license WHERE status = #{status} and userID=#{userID}
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCount" parameterType="String" resultType="int">
+		SELECT count(*) FROM license
+	</select>
+</mapper>

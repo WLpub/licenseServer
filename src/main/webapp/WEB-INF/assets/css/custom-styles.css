@@ -678,6 +678,7 @@ font-size: 19px;
 	}
 	table td,th{
 		text-align:center!important;
+        vertical-align:middle!important;/*…Ë÷√¥π÷±æ”÷–*/
 		width:20%;
 	}
 td a.download{

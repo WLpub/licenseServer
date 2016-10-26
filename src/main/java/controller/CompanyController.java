@@ -145,6 +145,56 @@ public class CompanyController {
 		}
 		return ret;
 	}
+	@RequestMapping(value = "/getAllCompanyByStatus", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody JSONObject getAllCompanyByStatus(@RequestBody CompanyFilter companyFilter,HttpSession httpSession) {
+		JSONObject ret = new JSONObject();
+		try {
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录！");
+			}
+			ret.put("companys",companyService.selectCompanyByStatus(companyFilter.getStart(),companyFilter.getCompany().getStatus()));
+			ret.put("count",companyService.getCountByStatus(companyFilter.getCompany().getStatus()));
+			ret.put("status", 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(e.getMessage());
+			ret.put("status", -1);
+			ret.put("errMsg", e.getMessage());
+			return ret;
+		}
+		return ret;
+	}
+	
+	@RequestMapping(value = "/updateCompanyStatus", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody JSONObject updateCompanyStatus(@RequestBody Company company,HttpSession httpSession) {
+		JSONObject ret = new JSONObject();
+		try {
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录！");
+			}
+			permissionService.setUserPermission(ur.getPermission());
+			if(company.getStatus().equals("-1")){
+				ur.setPermission(permissionService.setComponyAuth(false));
+			}else if(company.getStatus().equals("0")){
+				ur.setPermission(permissionService.setCompony(true));
+			}else{
+				ur.setPermission(permissionService.setComponyAuth(true));
+			}
+			company.setUserID(ur.getId());
+			companyService.updateCompanyStatus(company,ur.getPermission());
+			ret.put("status", 1);
+			httpSession.setAttribute("user", ur);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(e.getMessage());
+			ret.put("status", -1);
+			ret.put("errMsg", e.getMessage());
+			return ret;
+		}
+		return ret;
+	}
 	
 	@RequestMapping(value="/mailCompany", method=RequestMethod.POST)
     public @ResponseBody JSONObject mailCompany(@RequestParam("file") MultipartFile file,HttpSession httpsession){
