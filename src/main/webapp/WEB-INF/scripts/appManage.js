@@ -55,6 +55,10 @@
 				templateUrl: 'views/companyManage.html',
 				controller: 'CompanyManageCtrl'
 			})
+			.when('/license', {
+				templateUrl: 'views/license.html',
+				controller: 'LicenseManageCtrl'
+			})
 			.otherwise({ redirectTo: '/' });
 	};
 })();

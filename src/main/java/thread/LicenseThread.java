@@ -46,6 +46,8 @@ public class LicenseThread  extends Thread {
                     for (int i = 0; i < standbyList.size(); i++) {  
                         try {  
                             System.out.println(standbyList.get(i)+": dealing with!");
+                            Thread.sleep(sleepTime*10);  
+                            System.out.println(standbyList.get(i)+": done!");
                         } catch (Exception e) {  
                             logger.error(e.toString(), e);  
                             continue;  

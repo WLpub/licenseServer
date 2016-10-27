@@ -79,6 +79,27 @@ public class LicenseController {
 		return ret;
 	}
 	
+	@RequestMapping(value = "/getLicenseByStatusUserID", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody JSONObject getLicenseByStatusUserID(@RequestBody LicenseFilter licenseFilter,HttpSession httpSession) {
+		JSONObject ret = new JSONObject();
+		try {
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录！");
+			}
+			ret.put("licenses",licenseService.selectLicenseByStatusUserID(ur.getId(),licenseFilter.getLicense().getStatus(),licenseFilter.getStart()));
+			ret.put("count",licenseService.getTotalCountByStatusUserID(licenseFilter.getLicense().getStatus(),ur.getId()));
+			ret.put("status", 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(e.getMessage());
+			ret.put("status", -1);
+			ret.put("errMsg", e.getMessage());
+			return ret;
+		}
+		return ret;
+	}
+	
 	@RequestMapping(value = "/getLicenseByStatus", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody JSONObject getLicenseByStatus(@RequestBody LicenseFilter licenseFilter,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();

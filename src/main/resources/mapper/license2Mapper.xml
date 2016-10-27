@@ -43,6 +43,11 @@
 	
 	<!-- 查询全部用户-->
 	<select id="getTotalCountByStatus" parameterType="String" resultType="int">
+		SELECT count(*) FROM license WHERE status = #{status}
+	</select>
+	
+	<!-- 查询全部用户-->
+	<select id="getTotalCountByStatusUserID" resultType="int">
 		SELECT count(*) FROM license WHERE status = #{status} and userID=#{userID}
 	</select>
 	
