@@ -9,6 +9,7 @@
 		<result column="VERSION" property="version" jdbcType="CHAR" />
 		<result column="DESCRIPTION" property="description" jdbcType="CHAR" />
 		<result column="PRICE" property="price" jdbcType="CHAR" />
+		<result column="WEBSITE" property="website" jdbcType="CHAR" />
 	</resultMap>
 	<!-- 查询单条记录 -->
 	<select id="selectProductByID" parameterType="int" resultMap="BaseResultMap">

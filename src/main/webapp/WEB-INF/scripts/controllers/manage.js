@@ -8,7 +8,8 @@
 		.controller('RecordCtrl', RecordCtrl)
 		.controller('CompanyAuthCtrl', CompanyAuthCtrl)
 		.controller('CompanyManageCtrl', CompanyManageCtrl)
-		.controller('LicenseManageCtrl', LicenseManageCtrl);
+		.controller('LicenseManageCtrl', LicenseManageCtrl)
+		.controller('InformationCtrl',InformationCtrl);
 		
 	function MainCtrl($rootScope, $scope){
 		$scope.generalInfo = {
@@ -36,6 +37,35 @@
 						$scope.generalInfo.user.username = "游客";
 						$scope.generalInfo.totalWay = "未登录·暂无";
 						$scope.generalInfo.totalFile = "未登录·暂无";
+						$scope.$apply();
+					}
+				},
+				error : function(ret) {
+					swal('获取基本信息失败！');
+				},
+				contentType : 'application/json'
+			});
+		};
+		$scope.getInfo();
+	};
+	function InformationCtrl($rootScope, $scope){
+		$scope.generalInfo = {
+				"user":{},
+				"totalWay":'',
+				"totalFile":''
+		};
+		$scope.getInfo = function() {
+			$.ajax({
+				type : 'POST',
+				url : "./getGeneralInfo",
+				data : JSON.stringify({}),
+				success : function(ret) {
+					if (ret.status > -1) {
+						$scope.generalInfo.user = ret.user;
+						$scope.$apply();
+					} else {
+						$scope.messageText = '获取失败！' + ret.errMsg;
+						$scope.generalInfo.user.username = "游客";
 						$scope.$apply();
 					}
 				},

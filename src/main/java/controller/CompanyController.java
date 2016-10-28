@@ -91,7 +91,7 @@ public class CompanyController {
 			if(crRet>0){
 				ret.put("status", crRet);
 			}else{
-				throw new Exception("购买失败,请稍后再试！");
+				throw new Exception("申请失败,请稍后再试！");
 			}
 			
 		} catch (Exception e) {
@@ -152,6 +152,8 @@ public class CompanyController {
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
+			}else if(!permissionService.isAdmin(ur.getPermission())){
+				throw new Exception("用户权限不够！");
 			}
 			ret.put("companys",companyService.selectCompanyByStatus(companyFilter.getStart(),companyFilter.getCompany().getStatus()));
 			ret.put("count",companyService.getCountByStatus(companyFilter.getCompany().getStatus()));
@@ -173,19 +175,20 @@ public class CompanyController {
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
+			}else if(!permissionService.isAdmin(ur.getPermission())){
+				throw new Exception("用户权限不够！");
 			}
-			permissionService.setUserPermission(ur.getPermission());
+			User user = userService.selectUserById(company.getUserID());
+			permissionService.setUserPermission(user.getPermission());
 			if(company.getStatus().equals("-1")){
-				ur.setPermission(permissionService.setComponyAuth(false));
+				user.setPermission(permissionService.setComponyAuth(false));
 			}else if(company.getStatus().equals("0")){
-				ur.setPermission(permissionService.setCompony(true));
+				user.setPermission(permissionService.setCompony(true));
 			}else{
-				ur.setPermission(permissionService.setComponyAuth(true));
+				user.setPermission(permissionService.setComponyAuth(true));
 			}
-			company.setUserID(ur.getId());
-			companyService.updateCompanyStatus(company,ur.getPermission());
+			companyService.updateCompanyStatus(company,user.getPermission());
 			ret.put("status", 1);
-			httpSession.setAttribute("user", ur);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.debug(e.getMessage());
@@ -212,8 +215,8 @@ public class CompanyController {
         	POIFSFileSystem fs = new POIFSFileSystem(in);  
         	Workbook book = new HSSFWorkbook(fs);  
         	String c = book.getSheetAt(0).getRow(1).getCell(1).getStringCellValue();
-        	 System.out.println(c);
-        	 
+        	System.out.println(c);
+        	book.close(); 
         	String sendUserName = "m13818566641_2@163.com"; 
             String sendPassword = "Oracle1234"; 
               

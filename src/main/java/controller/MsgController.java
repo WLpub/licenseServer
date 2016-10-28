@@ -22,7 +22,7 @@ import service.MsgService;
 public class MsgController {
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MsgController.class);
-	@Resource
+	@Resource(name="AliImpl")
 	private MsgService msgSender;
 	
 	@RequestMapping(value = { "/phoneMsg" }, method = RequestMethod.POST, consumes = "application/json")
@@ -35,9 +35,9 @@ public class MsgController {
 		    HttpSession session = req.getSession();
 		    System.out.print(code);
 		    session.setAttribute("phoneCode", code+"");
-			String returnString = msgSender.batchSend(msgFilter.getPhone(), "【LicneseServer】您的验证码为："+code);
-			String status = returnString.split("\n")[0].split(",")[1];
-			if(status.equals("0")){
+		    session.setAttribute("phone", msgFilter.getPhone());
+			String returnString = msgSender.batchSend(msgFilter.getPhone(), "",code+"");
+			if(returnString.equals("1")){
 				ret.put("status", 0);
 			}else{
 				ret.put("status",-1);

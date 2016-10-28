@@ -62,7 +62,7 @@
 		
 		// btn msg
 		$scope.msgBtnFont = "点击发送验证码";
-		$scope.msgSending = false;
+		$scope.msgSending = true;
 		// register a new user
 		$scope.submitRegister = function(){
 			$.ajax({
@@ -90,14 +90,21 @@
 		$scope.update_p = function() { 
 			if($scope.timeStart == $scope.timeTotal) { 
 				$scope.msgBtnFont = "点击发送验证码";
-				$scope.msgSending = false;
+				$scope.msgSending = true;
+				$scope.timeStart = 1;
 			 }else { 
 				 var printnr = $scope.timeTotal-$scope.timeStart; 
 				 $scope.msgBtnFont = " (" + printnr +")秒后重新发送";
 				 $scope.msgSending = false;
+				 $scope.timeStart++;
+				 window.setTimeout("$('#updateBtn').click()", 1000 ); 
 			 }
 		}; 
 		$scope.sendMsg = function(){
+			if(!$scope.msgSending){
+				swal("请稍后再试！");
+				return;
+			}
 			if(!!$scope.currentUser.phone)
 			{
 				$scope.msgSending = false;
@@ -108,7 +115,6 @@
 					success : function(ret){
 						if(ret.status>-1){
 							$scope.isSuccess = true;
-							$scope.timeStart = 60;
 						}else{
 							$scope.isSuccess = false;
 							$scope.timeStart = 60;
@@ -121,9 +127,7 @@
 					},
 					contentType : 'application/json'
 				});
-				for($scope.timeStart=1;$scope.timeStart<=60;$scope.timeStart++) { 
-					window.setTimeout("$('#updateBtn').click()", $scope.timeStart *1000 ); 
-				}
+				$scope.update_p();
 			}else{
 				swal("请先输入正确的手机号码");
 			}

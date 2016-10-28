@@ -45,7 +45,7 @@
 			$.ajax({
 				type : 'POST',
 				url : "./updateCompanyStatus",
-				data : JSON.stringify({'id':company.id,'status':company.statusChanged}),
+				data : JSON.stringify({'id':company.id,'status':company.statusChanged,"userID":company.userID}),
 				success : function(ret) {
 					if (ret.status > -1) {
 						company.status = company.statusChanged;

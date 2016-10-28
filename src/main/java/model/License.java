@@ -6,6 +6,7 @@ public class License {
     private String result;
     private Integer userID;
     private String status;
+    private String Description;
     private String timestamp;
 
     public Integer getId() {
@@ -43,5 +44,11 @@ public class License {
 	}
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
+	}
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
 	}
 }

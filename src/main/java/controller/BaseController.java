@@ -67,8 +67,10 @@ public class BaseController {
 		// Spring uses InternalResourceViewResolver and return back manage.jsp
 		if(httpSession.getAttribute("user")==null){
 			return "redirect:/#/login";
-		}else{
+		}else if(permissionService.isAdmin(((User) httpSession.getAttribute("user")).getPermission())){
 			return VIEW_ADMIN;
+		}else{
+			return VIEW_MANAGE;
 		}
 	}
 	
@@ -137,11 +139,15 @@ public class BaseController {
 				ret.put("status", -1);
 				ret.put("errMsg","手机验证码错误！");
 			}else{
+				permissionService.setUserPermission("000000");
 				user.setPoint(10);
 				if(user.getPermission()!=null&&user.getPermission().equals("1")){
 					user.setPermission(permissionService.setCompony(true));
+				}else{
+					user.setPermission("000000");
 				}
 				user.setBalance(0);
+				user.setPhone((String)httpSession.getAttribute("phone"));
 				int uId = userService.createUser(user);
 				String serCode = codeID.toSerialCode(uId);
 				user.setCode(serCode);
@@ -150,13 +156,17 @@ public class BaseController {
 					ret.put("status", uId);
 				}
 				else{
-					ret.put("status", -1);
-					ret.put("errMsg", "创建用户失败，手机或邮箱重复！");
+					throw new Exception("创建用户失败，手机或邮箱重复！");
 				}
 			}
 		} catch (Exception e) {
 			ret.put("status", -1);
-			ret.put("errMsg", e.getMessage());
+			if(e.getMessage().equals("-1"))
+			{
+				ret.put("errMsg", "创建用户失败，手机或邮箱重复！");
+			}else
+				ret.put("errMsg", e.getMessage());
+			
 			return ret;
 		}
 		return ret;

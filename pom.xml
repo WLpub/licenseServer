@@ -213,6 +213,16 @@
 		    <artifactId>poi</artifactId>
 		    <version>${poi.version}</version>
 		</dependency>
+		
+		<!-- 阿里大于 -->
+		<dependency>
+			<groupId>org.ali</groupId>
+			<artifactId>dayu</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

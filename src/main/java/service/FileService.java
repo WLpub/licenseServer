@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import controller.LicenseController;
-
 @Service
 public class FileService {
 	private String t=Thread.currentThread().getContextClassLoader().getResource("").getPath();
@@ -20,7 +18,7 @@ public class FileService {
 		if (!file.isEmpty()) {
             try {
             	String oriName = file.getOriginalFilename();
-                //如果名称不为"",说明该文件存在，否则说明该文件不存在  
+                // 如果名称不为"",说明该文件存在，否则说明该文件不存在  
                 if(oriName.trim() !=""){  
                     //重命名上传后的文件名  
                     fileName = date.getTime() + oriName;  

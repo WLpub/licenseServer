@@ -2,7 +2,7 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">
-					我的 LicenseServer <small>你好： <font ng-bind="generalInfo.user.username"></font></small>
+					LicenseServer <small>你好： <font ng-bind="generalInfo.user.username"></font></small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="#/">首页</a></li>
@@ -12,7 +12,70 @@
 			<div id="page-inner">
 				<!-- /. ROW  -->
 				<div class="row">
-					<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+										<h3 ng-bind="generalInfo.user.isGithub"></h3>
+										<small>Git群组</small>
+								</div>
+								<div class="icon">
+									<a ng-href={{generalInfo.user.gitHref}}><i class="fa fa-group fa-5x blue"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.user.isTeacher"></h3>
+										<small>教师</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a ng-href={{generalInfo.user.tearchHref}}><i class="fa fa-cogs fa-5x green"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.user.isCompany"></h3>
+										<small>企业</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a ng-href={{generalInfo.user.companyHref}}><i class="fa fa-suitcase fa-5x green"></i></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								个人信息：
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+									<span class="list-group-item"> <font>用户名：</font>张三 </span>
+									<span class="list-group-item"> 用户名：123 </span>
+									<span class="list-group-item"> 用户名：123 </span>
+									<span class="list-group-item"> 用户名：123 </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-12 col-xs-12">
 						<div class="board">
 							<div class="panel panel-primary">
 								<div class="number">
@@ -29,7 +92,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="col-md-2 col-sm-12 col-xs-12">
 						<div class="board">
 							<div class="panel panel-primary">
 								<div class="number">
@@ -45,54 +108,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-										<h3 ng-bind="generalInfo.user.isGithub"></h3>
-										<small>Git群组</small>
-								</div>
-								<div class="icon">
-									<a ng-href={{generalInfo.user.gitHref}}><i class="fa fa-group fa-5x blue"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-									<h3>
-										<h3 ng-bind="generalInfo.user.isTeacher"></h3>
-										<small>教师</small>
-									</h3>
-								</div>
-								<div class="icon">
-									<a ng-href={{generalInfo.user.tearchHref}}><i class="fa fa-cogs fa-5x green"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-									<h3>
-										<h3 ng-bind="generalInfo.user.isCompany"></h3>
-										<small>企业</small>
-									</h3>
-								</div>
-								<div class="icon">
-									<a ng-href={{generalInfo.user.companyHref}}><i class="fa fa-suitcase fa-5x green"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<footer>
 				<p>

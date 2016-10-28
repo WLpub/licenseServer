@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
-import service.FileService;  
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;  
   
 /** 
  * 处理License文件的thread
@@ -20,9 +17,6 @@ public class LicenseThread  extends Thread {
     public LicenseThread() {  
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);  
     }  
-  
-    @Autowired  
-    private FileService fileService;  
   
     private List<String> tempList = new ArrayList<String>();
     

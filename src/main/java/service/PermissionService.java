@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
  * 2) 是否为教师 <br/>
  * 3) 是否是认证过的github开源用户 <br/>
  * 4) 是否是企業用戶 <br/>
+ * 5) 是否为管理员
  */
 @Service
 public class PermissionService {
@@ -92,5 +93,20 @@ public class PermissionService {
 	
 	public boolean getCompony(){
 		return this.permission.charAt(2)=='1';
+	}
+	
+	public String setAdmin(boolean per){
+		StringBuilder strBuilder = new StringBuilder(this.permission);
+		strBuilder.setCharAt(1, per?'1':'0');
+		this.permission= strBuilder.toString();
+		return this.permission;
+	}
+	
+	public boolean getAdmin(){
+		return this.permission.charAt(1)=='1';
+	}
+	
+	public boolean isAdmin(String permission){
+		return permission.charAt(1)=='1';
 	}
 }

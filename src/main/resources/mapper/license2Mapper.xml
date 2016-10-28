@@ -9,6 +9,7 @@
 		<result column="FILE" property="file" jdbcType="CHAR" />
 		<result column="RESULT" property="result" jdbcType="CHAR" />
 		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="CHAR" />
 		<result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<!-- 查询单条记录 -->
@@ -18,7 +19,7 @@
 
 	<!-- 创建购买记录(Create) -->
 	<insert id="createLicense" useGeneratedKeys="true" keyProperty="id" parameterType="model.License" >
-		insert into license(file,userID,status) values(#{file},#{userID},#{status})
+		insert into license(file,userID,status,description) values(#{file},#{userID},#{status},#{description})
 	</insert>
 	   
 	<!-- 查询全部用户-->

@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta content="" name="description" />
 	<meta content="webthemez" name="author" />
@@ -102,8 +102,7 @@
 					class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 			</a>
 				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#/"><i class="fa fa-user fa-fw"></i> User
-							Profile</a></li>
+					<li><a href="#/information"><i class="fa fa-user fa-fw"></i> 个人信息</a></li>
 					<li><a href="#/"><i class="fa fa-gear fa-fw"></i> Settings</a>
 					</li>
 					<li class="divider"></li>

@@ -1,0 +1,8 @@
+完成第四章课后project2（书180页  art store）
+所需素材在ftp   /classes/15/152 WEB应用基础（朱东来）/Materials/Codes/Fundamentals of Web Development/case_studies/cs_project_start/cs_project_start04.zip中
+
+
+
+说明：1.书上lab文档instructions中的第三点，其中name "index[]"  应为 name="index[]"
+2.书上lab文档instructions中的第五点，POST应为GET
+3.请仔细阅读文档，找对相应完成后的效果图，不要搞错了

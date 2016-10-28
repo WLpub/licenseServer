@@ -6,6 +6,7 @@ public class Product {
 	private String version;
 	private String description;
 	private String price;
+	private String website;
 	
 	public String getName() {
 		return name;
@@ -36,5 +37,11 @@ public class Product {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 }

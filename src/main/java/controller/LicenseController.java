@@ -19,6 +19,7 @@ import model.LicenseFilter;
 import model.User;
 import service.FileService;
 import service.LicenseService;
+import service.PermissionService;
 import thread.ThreadVariables;
 
 @Controller
@@ -29,9 +30,11 @@ public class LicenseController {
 	private LicenseService licenseService;
 	@Resource
 	private FileService fileService;
+	@Resource
+	private PermissionService permissionService;
 	
 	@RequestMapping(value = "/createLicense", method = RequestMethod.POST)
-	public @ResponseBody JSONObject createLicense(@RequestParam("file") MultipartFile file,HttpSession httpSession) {
+	public @ResponseBody JSONObject createLicense(@RequestParam("file") MultipartFile file,@RequestParam("description") String description,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
 			User ur = (User)httpSession.getAttribute("user");
@@ -42,6 +45,7 @@ public class LicenseController {
 			String fileName = fileService.keepFile(file,ur.getId());
 			license.setUserID(ur.getId());
 			license.setFile(fileName);
+			license.setDescription(description);
 			license.setStatus("0");
 			int licenseID = licenseService.createLicense(license);
 			if(licenseID<0)
@@ -107,6 +111,8 @@ public class LicenseController {
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
+			}if(!permissionService.isAdmin(ur.getPermission())){
+				throw new Exception("用户权限不够！");
 			}
 			ret.put("licenses",licenseService.selectLicenseByStatus(licenseFilter.getLicense().getStatus(),licenseFilter.getStart()));
 			ret.put("count",licenseService.getTotalCountByStatus(licenseFilter.getLicense().getStatus()));
@@ -128,8 +134,9 @@ public class LicenseController {
 			User ur = (User)httpSession.getAttribute("user");
 			if(ur==null){
 				throw new Exception("用户未登录！");
+			}if(!permissionService.isAdmin(ur.getPermission())){
+				throw new Exception("用户权限不够！");
 			}
-			System.out.println(license.getStatus());
 			if(!license.getStatus().equals("1")){
 				license.setResult("");
 			}else{
