@@ -59,9 +59,9 @@
 				templateUrl: 'views/license.html',
 				controller: 'LicenseManageCtrl'
 			})
-			.when('/information', {
-				templateUrl: 'views/information.html',
-				controller: 'InformationCtrl'
+			.when('/updateInfo', {
+				templateUrl: 'views/updateInfo.html',
+				controller: 'UpdateInfoCtrl'
 			})
 			.otherwise({ redirectTo: '/' });
 	};

@@ -9,7 +9,7 @@
 		.controller('CompanyAuthCtrl', CompanyAuthCtrl)
 		.controller('CompanyManageCtrl', CompanyManageCtrl)
 		.controller('LicenseManageCtrl', LicenseManageCtrl)
-		.controller('InformationCtrl',InformationCtrl);
+		.controller('UpdateInfoCtrl',UpdateInfoCtrl);
 		
 	function MainCtrl($rootScope, $scope){
 		$scope.generalInfo = {
@@ -48,7 +48,7 @@
 		};
 		$scope.getInfo();
 	};
-	function InformationCtrl($rootScope, $scope){
+	function UpdateInfoCtrl($rootScope, $scope){
 		$scope.generalInfo = {
 				"user":{},
 				"totalWay":'',
@@ -66,6 +66,8 @@
 					} else {
 						$scope.messageText = '获取失败！' + ret.errMsg;
 						$scope.generalInfo.user.username = "游客";
+						$scope.generalInfo.totalWay = "未登录·暂无";
+						$scope.generalInfo.totalFile = "未登录·暂无";
 						$scope.$apply();
 					}
 				},

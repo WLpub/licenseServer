@@ -1,7 +1,8 @@
-<div class="loginTable">
-	<div class="login_logo">
-		<h1 style="font-size:80px;">UUmai Login</h1>
-	</div>
+<section class="section interactive" data-interactive="" style="margin-top:50px">
+<hr class="grid-2 center">
+<h2>登录</h2>
+<br/>
+<div class="grid-12 center">
 	<div class="login_form">
 		<form id="common_login" novalidate name="loginForm">
 			<div class="form-group input-group">
@@ -16,9 +17,10 @@
 				<a id="forgetPassword" ng-click="requestPasswordReset()">忘记密码？</a>
 			</div>
 			<div class="form-group">
-				<input class="btn btn-primary btn_group " type="submit" value="登    　录" ng-click="login()" ng-disabled="!loginForm.$valid">
+				<input class="btn btn-primary btn_group " type="submit" value="登    　录" ng-click="login()">
 				<a class="btn btn-info btn_group floatRight" ng-href="#/register">注    　册</a>
 			</div>
 		</form>
 	</div>
 </div>
+</section>

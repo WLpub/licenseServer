@@ -22,6 +22,7 @@
 									<tr class="info">
 										<th>购买产品</th>
 										<th>版本</th>
+										<th>编码</th>
 										<th>购买时长</th>
 										<th>购买时间</th>
 									</tr>
@@ -30,11 +31,12 @@
 									<tr ng-repeat="record in records">
 										<td ng-bind="productsJson[record.productID]['name']"></td>
 										<td ng-bind="productsJson[record.productID]['version']"></td>
+										<td><abbr title="{{record.code}}" ng-bind="record.code.substring(0,15)"></abbr></td>
 										<td ng-bind="productsJson[record.productID]['price'][record.priceID]['time']+'个月'"></td>
 										<td ng-bind="record.timestamp"></td>
 									</tr>
 									<tr ng-show="records.length<1">
-										<td colspan="4">暂无数据</td>
+										<td colspan="5">暂无数据</td>
 									</tr>
 								</tbody>
 							</table>

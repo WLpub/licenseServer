@@ -1,0 +1,71 @@
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+					LicenseServer <small>你好： <font ng-bind="generalInfo.user.username"></font></small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#/">首页</a></li>
+					<li class="active"><a href="#/information">更新个人信息</a></li>
+				</ol>
+			</div>
+			<div id="page-inner">
+				<!-- /. ROW  -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="card-title">
+									<div class="title">更新个人信息</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" ng-model="generalInfo.user.username">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">邮箱：：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" ng-model="generalInfo.user.email">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">手机号：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" ng-model="generalInfo.user.phone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">验证码：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" ng-model="generalInfo.phoneCode">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">密码：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" ng-model="generalInfo.user.password">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="submit" class="btn btn-info">更新</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer>
+					<p>
+						Copyright &copy; 2016.Company name All rights reserved.UUmai
+					</p>
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>

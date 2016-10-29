@@ -61,7 +61,7 @@
 		};
 		
 		// btn msg
-		$scope.msgBtnFont = "点击发送验证码";
+		$scope.msgBtnFont = "发送验证码";
 		$scope.msgSending = true;
 		// register a new user
 		$scope.submitRegister = function(){
@@ -89,12 +89,12 @@
 		$scope.timeTotal = 60;
 		$scope.update_p = function() { 
 			if($scope.timeStart == $scope.timeTotal) { 
-				$scope.msgBtnFont = "点击发送验证码";
+				$scope.msgBtnFont = "发送验证码";
 				$scope.msgSending = true;
 				$scope.timeStart = 1;
 			 }else { 
 				 var printnr = $scope.timeTotal-$scope.timeStart; 
-				 $scope.msgBtnFont = " (" + printnr +")秒后重新发送";
+				 $scope.msgBtnFont = " (" + printnr +")秒后重发";
 				 $scope.msgSending = false;
 				 $scope.timeStart++;
 				 window.setTimeout("$('#updateBtn').click()", 1000 ); 

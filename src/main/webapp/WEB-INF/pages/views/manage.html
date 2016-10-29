@@ -12,37 +12,22 @@
 			<div id="page-inner">
 				<!-- /. ROW  -->
 				<div class="row">
-					<div class="col-md-4 col-sm-12 col-xs-12">
-						<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-										<h3 ng-bind="generalInfo.user.isGithub"></h3>
-										<small>Git群组</small>
-								</div>
-								<div class="icon">
-									<a ng-href={{generalInfo.user.gitHref}}><i class="fa fa-group fa-5x blue"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="board">
 							<div class="panel panel-primary">
 								<div class="number">
 									<h3>
-										<h3 ng-bind="generalInfo.user.isTeacher"></h3>
-										<small>教师</small>
+										<h3 ng-bind="generalInfo.user.isGithub"></h3>
+										<small>Git群组</small>
 									</h3>
 								</div>
 								<div class="icon">
-									<a ng-href={{generalInfo.user.tearchHref}}><i class="fa fa-cogs fa-5x green"></i></a>
+									<a ng-href={{generalInfo.user.gitHref}}><i class="fa fa-group fa-5x blue"></i></a>
 								</div>
-
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="board">
 							<div class="panel panel-primary">
 								<div class="number">
@@ -54,61 +39,103 @@
 								<div class="icon">
 									<a ng-href={{generalInfo.user.companyHref}}><i class="fa fa-suitcase fa-5x green"></i></a>
 								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.user.isTeacher"></h3>
+										<small>教师</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a ng-href={{generalInfo.user.tearchHref}}><i class="fa fa-book fa-5x brown"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<div class="number">
+									<h3>
+										<h3 ng-bind="generalInfo.user.isTeacher"></h3>
+										<small>学生</small>
+									</h3>
+								</div>
+								<div class="icon">
+									<a ng-href={{generalInfo.user.tearchHref}}><i class="fa fa-user fa-5x pink"></i></a>
+								</div>
 
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-4 col-sm-12 col-xs-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								个人信息：
+				<div class="row panel">
+					<div class="panel-heading"></div>
+					<div class="panel-body">
+						<div class="col-md-3 col-sm-12 col-xs-12">
+							<div class="board" style="border:1px solid #eee">
+								<div class="panel panel-primary">
+									<div class="number">
+										<h3>
+											<h3 ng-bind="generalInfo.user.point"></h3>
+											<small>现有积分</small>
+										</h3>
+									</div>
+									<div class="icon">
+										<a href="#/"><i class="fa fa-fire fa-5x red"></i></a>
+									</div>
+								</div>
 							</div>
-							<div class="panel-body">
-								<div class="list-group">
-									<span class="list-group-item"> <font>用户名：</font>张三 </span>
-									<span class="list-group-item"> 用户名：123 </span>
-									<span class="list-group-item"> 用户名：123 </span>
-									<span class="list-group-item"> 用户名：123 </span>
+						</div>
+						<div class="col-md-3 col-sm-12 col-xs-12" >
+							<div class="board" style="border:1px solid #eee">
+								<div class="panel panel-primary">
+									<div class="number">
+										<h3>
+											<h3 ng-bind="generalInfo.user.balance"></h3>
+											<small>余额</small>
+										</h3>
+									</div>
+									<div class="icon">
+										<a href="#/"><i class="fa fa-money fa-5x yellow"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									个人信息：
+								</div>
+								<div class="panel-body">
+									<div class="list-group">
+										<span class="list-group-item">
+	                                        <span class="badge" ng-bind="generalInfo.user.username"></span>
+	                                        <i class="fa fa-fw fa-user green"></i> 姓名:
+	                                    </span>
+										<span class="list-group-item">
+	                                        <span class="badge" ng-bind="generalInfo.user.email"></span>
+	                                        <i class="fa fa-fw fa-envelope brown"></i> 邮箱:
+	                                    </span>
+	                                    <span class="list-group-item">
+	                                        <span class="badge" ng-bind="generalInfo.user.phone"></span>
+	                                        <i class="fa fa-fw fa-phone pink"></i> 电话:
+	                                    </span>
+	                                    <span class="list-group-item">
+	                                        <span class="badge" ng-bind="generalInfo.user.code"></span>
+	                                        <i class="fa fa-fw fa-cog yellow"></i> 邀请码:
+	                                    </span>
+									</div>
+									<div class="text-right"><small><a href="#/updateInfo"><i class="fa fa-pencil"></i></a></small></div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-12 col-xs-12">
-						<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-									<h3>
-										<h3 ng-bind="generalInfo.user.point"></h3>
-										<small>现有积分</small>
-									</h3>
-								</div>
-								<div class="icon">
-									<a href="#/"><i class="fa fa-fire fa-5x red"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-2 col-sm-12 col-xs-12">
-						<div class="board">
-							<div class="panel panel-primary">
-								<div class="number">
-									<h3>
-										<h3 ng-bind="generalInfo.user.balance"></h3>
-										<small>余额</small>
-									</h3>
-								</div>
-								<div class="icon">
-									<a href="#/"><i class="fa fa-money fa-5x yellow"></i></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					
 				</div>
 				<footer>
 				<p>

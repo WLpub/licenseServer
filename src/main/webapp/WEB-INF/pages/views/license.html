@@ -16,12 +16,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						License记录
-						<select class="pull-right" ng-model="statusChoosed" ng-change="getLicense()" class="btn btn-default dropdown-toggle">
-							<option value="">全部</option>
-							<option value="0">未处理</option>
-							<option value="1">已处理</option>
-							<option value="-1">审核失败</option>
-						</select>
+						<small>
+							<select class="pull-right btn btn-default dropdown-toggle" ng-model="statusChoosed" ng-change="getLicense()" style="">
+								<option value="">全部</option>
+								<option value="0">未处理</option>
+								<option value="1">已处理</option>
+								<option value="-1">审核失败</option>
+							</select>
+						</small>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">

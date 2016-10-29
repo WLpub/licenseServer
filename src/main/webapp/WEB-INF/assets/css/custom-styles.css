@@ -124,7 +124,7 @@ border-radius: 0;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #F36A5A;
+  background-color: #588ae7;
   border-radius: 10px;
 }
 .closed{
@@ -241,9 +241,17 @@ i.fa.fa-bars:hover {
 }
 .yellow{
 	background:#FABE28 !important;
+	color:white;
 }
 .red {
     background: #f36a5a !important;
+}
+.brown {
+	background-color: #F5B252 !important;
+}
+.pink{
+	background-color: #8080c0!important;
+	color:white;
 }
 .jumbotron{
 padding:20px;

@@ -1,40 +1,43 @@
-<div class="container ">
+<section class="section interactive" data-interactive="" style="margin-top:50px">
+<hr class="grid-2 center">
+<h2>注册</h2>
+<div class="center row" style="margin-top:30px">
 	<form class="form-horizontal center-block" name="registerForm" role="form" novalidate ng-show="registerStage">
 		<div class="form-group">
-			<label class="col-sm-3 control-label">用户名</label>
+			<label class="col-sm-4 control-label">用户名</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" name="username" value="" placeholder="必填,至少6个字符" ng-model="currentUser.username" ng-minlength=6 ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="registerForm.username.$error.minlength && !registerForm.username.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入至少6位字符</span></span>
 				<span ng-show="registerForm.username.$valid && !registerForm.username.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">邮箱</label>
+			<label class="col-sm-4 control-label">邮箱</label>
 			<div class="col-sm-4">
 				<input type="email" class="form-control" name="email" value="" placeholder="必填" ng-model="currentUser.email" ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="registerForm.email.$error.email && !registerForm.email.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入正确的邮箱格式</span></span>
 				<span ng-show="registerForm.email.$valid && !registerForm.email.$focused "><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">手机号</label>
+			<label class="col-sm-4 control-label">手机号</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" name="phone" value="" placeholder="必填" ng-model="currentUser.phone" ng-minlength="11" ng-maxlength="11" ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="(registerForm.phone.$error.minlength || registerForm.phone.$error.maxlength) && !registerForm.phone.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入正确的11位手机号码</span></span>
 				<span ng-show="registerForm.phone.$valid && !registerForm.phone.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">手机验证码</label>
+			<label class="col-sm-4 control-label">手机验证码</label>
 			<div class="col-sm-2">
 				<input type="text" class="form-control" name="phoneCode" value="" placeholder="必填" ng-model="phoneCode" ng-minlength="4" ng-maxlength="4" ng-focus required>
 			</div>
@@ -42,80 +45,72 @@
 				<button class="btn btn-success" ng-click="sendMsg()" ng-valid="!msgSending">&nbsp;&nbsp;&nbsp;<font ng-bind="msgBtnFont"></font>&nbsp;&nbsp;&nbsp;</button>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="(registerForm.phoneCode.$error.minlength || registerForm.phoneCode.$error.maxlength) && !registerForm.phoneCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入手机验证码</span></span>
 				<span ng-show="registerForm.phoneCode.$valid && !registerForm.phoneCode.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">邀请码</label>
+			<label class="col-sm-4 control-label">邀请码</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" name="invitationCode" value="" placeholder="必填" ng-model="currentUser.invitationCode" ng-minlength="6" ng-maxlength="6" ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="(registerForm.invitationCode.$error.minlength || registerForm.invitationCode.$error.maxlength) && !registerForm.invitationCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入邀请码</span></span>
 				<span ng-show="registerForm.invitationCode.$valid && !registerForm.invitationCode.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div style="display:none" ng-click="update_p()" id="updateBtn"></div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">验证码</label>
+			<label class="col-sm-4 control-label">验证码</label>
 			<div class="col-sm-2">
 				<input type="text" class="form-control" name="imageCode" value="" placeholder="必填" ng-model="imageCode" ng-minlength="4" ng-maxlength="4" ng-focus required>
 			</div>
-			<div class="col-sm-2">
-				<img id="imgObj" alt="验证码" src="./code" /><a ng-click="changeImg()">换一张</a>
+			<div class="col-sm-2 display-inline-block">
+				<img id="imgObj" alt="验证码" src="./code" / style="display:inline;"><small style="font-size:smaller"><a ng-click="changeImg()">换一张</a></small>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="(registerForm.imageCode.$error.minlength || registerForm.imageCode.$error.maxlength) && !registerForm.imageCode.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入邀请码</span></span>
 				<span ng-show="registerForm.imageCode.$valid && !registerForm.imageCode.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">创建密码</label>
+			<label class="col-sm-4 control-label">创建密码</label>
 			<div class="col-sm-4">
 				<input type="password" class="form-control" name="password" value="" placeholder="必填" ng-model="currentUser.password" ng-minlength="6" ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="registerForm.password.$error.minlength && !registerForm.password.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">请输入至少6位字符</span></span>
 				<span ng-show="registerForm.password.$valid && !registerForm.password.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label">确认密码</label>
+			<label class="col-sm-4 control-label">确认密码</label>
 			<div class="col-sm-4">
 				<input type="password" class="form-control" name="passwordCertain" value="" placeholder="必填" ng-model="passwordCertain" ng-minlength="6" my-pwd-match="registerForm.password" ng-focus required>
 			</div>
 			<!-- hidden tips -->
-			<div class="col-sm-5 form-control-static tips">
+			<div class="col-sm-4 form-control-static tips">
 				<span ng-show="registerForm.passwordCertain.$dirty && registerForm.passwordCertain.$error.pwdmatch && !registerForm.passwordCertain.$focused"><i class="fa fa-minus-circle"></i><span class="tipContent">密码不一致</span></span>
 				<span ng-show="registerForm.passwordCertain.$valid && !registerForm.passwordCertain.$focused"><i class="fa fa-check"></i></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label"></label>
-			<div class="col-sm-4">
-				<div class="checkbox">
-				  <label>
-				    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="currentUser.permission">企业用户
-				  </label>
-				</div>
+			<label class="col-sm-4 control-label"></label>
+			<div class="col-sm-4 text-left">
+				<input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="currentUser.permission">企业用户
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-8">
-				<button type="submit" class="btn btn-primary" ng-click="submitRegister()" ng-disabled="!registerForm.$valid">同意以下协议并注册</button>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-8">
-				<a href="#">《LicenseServer用户协议》</a>
+			<div class="col-sm-offset-4 col-sm-4 text-left" >
+				<button type="submit" class="button tertiary display-inline-block" ng-click="submitRegister()" ng-disabled="!registerForm.$valid">同意以下协议并注册</button>
+				<a href="./#/">《用户协议》</a>
 			</div>
 		</div>
 	</form>
 </div>
+</section>
