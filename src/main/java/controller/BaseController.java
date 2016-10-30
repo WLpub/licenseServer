@@ -103,19 +103,19 @@ public class BaseController {
 				ret.put("errMsg", "用户未登录！");
 				return ret;
 			}
+			User us=null;
 			if (!(user.getEmail()==null)&&!user.getEmail().equals("")) {
-				ret.put("status", userService.judgeUserByEmail(user));
+				us = userService.judgeUserByEmail(user);
 			} else if (!(user.getPhone()==null)&&!user.getPhone().equals("")) {
-				User us = userService.judgeUserByPhone(user);
-				if(us!=null&&us.getId()>0){
-					us.setPassword("");
-					httpSession.setAttribute("user",us);
-					ret.put("status", us.getId());
-					ret.put("user", us);
-				}else{
-					ret.put("status", -1);
-					ret.put("errMsg", "用户名或密码错误！");
-				}
+				us = userService.judgeUserByPhone(user);
+			}
+			if(us!=null&&us.getId()>0){
+				us.setPassword("");
+				httpSession.setAttribute("user",us);
+				ret.put("status", us.getId());
+				ret.put("user", us);
+			}else{
+				throw new Exception("用户名或密码错误!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,7 +151,7 @@ public class BaseController {
 				int uId = userService.createUser(user);
 				String serCode = codeID.toSerialCode(uId);
 				user.setCode(serCode);
-				userService.updateUser(user);
+				userService.updateUser(user,false);
 				if(uId>0){
 					ret.put("status", uId);
 				}
@@ -173,23 +173,36 @@ public class BaseController {
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody JSONObject updateUser(@RequestBody User user) {
+	public @ResponseBody JSONObject updateUser(@RequestBody UserFilter userFilter,HttpSession httpSession) {
 		JSONObject ret = new JSONObject();
 		try {
-			if (user.getId() < 1) {
-				ret.put("status", -1);
-				ret.put("errMsg", "Wrong id number!");
-				logger.debug("user id:" + ret + " updated failed");
-				return ret;
+			User ur = (User)httpSession.getAttribute("user");
+			if(ur==null){
+				throw new Exception("用户未登录!");
 			}
-			ret.put("id", userService.updateUser(user));
+			
+			if(!userFilter.getUser().getPhone().equals(ur.getPhone())){
+				String phoneCode = (String)httpSession.getAttribute("phoneCode");
+				if(!phoneCode.equals(userFilter.getPhoneCode())){
+					throw new Exception("验证码错误！");
+				}else{
+					ur.setPhone((String)httpSession.getAttribute("phone"));
+				}
+			}
+			ur.setUsername(userFilter.getUser().getUsername());
+			ur.setEmail(userFilter.getUser().getEmail());
+			ur.setPassword(userFilter.getUser().getPassword());
+			ret.put("id", userService.updateUser(ur,userFilter.getUser().getPassword()!=null&&!userFilter.getUser().getPassword().equals("")));
+			ur.setPassword("");
+			httpSession.setAttribute("user", ur);
+			httpSession.setAttribute("phone", null);
+			httpSession.setAttribute("phoneCode", null);
 		} catch (Exception e) {
 			ret.put("status", -1);
-			ret.put("errMsg", e.getMessage());
+			ret.put("errMsg", "新的邮箱或者手机号重复，请更改后重试");
 			return ret;
 		}
 		ret.put("status", 0);
-		logger.debug("user id:" + ret + "; with name:" + user.getUsername());
 		return ret;
 	}
 	

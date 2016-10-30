@@ -29,7 +29,12 @@
 	<update id="updateUser" parameterType="model.User">
 		update user set USERNAME=#{username},EMAIL=#{email},PHONE=#{phone},code=#{code},point=#{point},balance=#{balance} where ID=#{id}
 	</update>
-   
+	
+   <!-- 修改用户(updateUserPaword) -->
+	<update id="updateUserPaword" parameterType="model.User">
+		update user set USERNAME=#{username},EMAIL=#{email},PHONE=#{phone},code=#{code},point=#{point},balance=#{balance},password=#{password} where ID=#{id}
+	</update>
+	
 	<!-- 查询全部用户-->
 	<select id="getAllUsers" resultType="model.User">
 		select * from user
@@ -38,5 +43,10 @@
 	<!-- 登录 -->
 	<select id="checkUserByPhone" resultType="model.User" parameterType="model.User">
 		select * from user where phone = #{phone} and password = #{password}
+	</select>
+	
+	<!-- 登录 -->
+	<select id="checkUserByEmail" resultType="model.User" parameterType="model.User">
+		select * from user where email = #{email} and password = #{password}
 	</select>
 </mapper>

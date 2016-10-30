@@ -32,7 +32,7 @@
 					success : function(ret){
 						if(ret.status>-1){
 							$scope.isSuccess = true;
-							window.location.href="manage";
+							window.location.href=(ret.user.permission.charAt(1)=='1'?"admin#/licsExam":"manage");
 						}else{
 							$scope.isSuccess = false;
 							swal("warning",'登录失败！');

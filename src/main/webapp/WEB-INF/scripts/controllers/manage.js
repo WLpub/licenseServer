@@ -54,6 +54,8 @@
 				"totalWay":'',
 				"totalFile":''
 		};
+		$scope.msgBtnFont = "发送验证码";
+		$scope.msgSending = true;
 		$scope.getInfo = function() {
 			$.ajax({
 				type : 'POST',
@@ -62,6 +64,7 @@
 				success : function(ret) {
 					if (ret.status > -1) {
 						$scope.generalInfo.user = ret.user;
+						$scope.currentUser = $.extend({},ret.user);
 						$scope.$apply();
 					} else {
 						$scope.messageText = '获取失败！' + ret.errMsg;
@@ -73,6 +76,83 @@
 				},
 				error : function(ret) {
 					swal('获取基本信息失败！');
+				},
+				contentType : 'application/json'
+			});
+		};
+		$scope.timeStart = 1;
+		$scope.timeTotal = 60;
+		$scope.update_p = function() { 
+			if($scope.timeStart == $scope.timeTotal) { 
+				$scope.msgBtnFont = "发送验证码";
+				$scope.msgSending = true;
+				$scope.timeStart = 1;
+			 }else { 
+				 var printnr = $scope.timeTotal-$scope.timeStart; 
+				 $scope.msgBtnFont = " (" + printnr +")秒后重发";
+				 $scope.msgSending = false;
+				 $scope.timeStart++;
+				 window.setTimeout("$('#updateBtn').click()", 1000 ); 
+			 }
+		}; 
+		$scope.sendMsg = function(){
+			if(!$scope.msgSending){
+				swal("请稍后再试！");
+				return;
+			}
+			if(!!$scope.currentUser.phone)
+			{
+				console.log($scope.currentUser.phone,$scope.generalInfo.user.phone);
+				if($scope.currentUser.phone===$scope.generalInfo.user.phone)
+				{
+					swal("未更改手机信息,不需要验证");
+					return;
+				}
+				$scope.msgSending = false;
+				$.ajax({
+					type : 'POST',
+					url : "./phoneMsg",
+					data : JSON.stringify({'phone':$scope.currentUser.phone,"msg":"您的验证码为："}),
+					success : function(ret){
+						if(ret.status>-1){
+						}else{
+							$scope.timeStart = 60;
+							swal('发送失败，请稍后再试！');
+						}
+					},
+					error:function(ret){
+						$scope.isSuccess = false;
+						swal( '注册失败！');
+					},
+					contentType : 'application/json'
+				});
+				$scope.update_p();
+			}else{
+				swal("请先输入正确的手机号码");
+			}
+		};
+		$scope.updateInfo = function(){
+			if(!!$scope.currentUser.password&&$scope.currentUser.password!==$scope.currentUser.passwordAgain){
+				swal("两次密码不同,请确认后重新输入");
+				return;
+			}
+			if(!!!$scope.currentUser.username) $scope.currentUser.username= $scope.generalInfo.user.username;
+			if(!!!$scope.currentUser.email) $scope.currentUser.email= $scope.generalInfo.user.email;
+			if(!!!$scope.currentUser.phone) $scope.currentUser.phone= $scope.generalInfo.user.phone;
+			if($scope.currentUser.phone!==$scope.generalInfo.user.phone&&!!!$scope.generalInfo.phoneCode){swal("请输入正确的手机验证码"); return;}
+			$.ajax({
+				type : 'POST',
+				url : "./updateUser",
+				data : JSON.stringify({"user":$scope.currentUser,'phoneCode':$scope.generalInfo.phoneCode}),
+				success : function(ret){
+					if(ret.status>-1){
+						swal("更新成功！");
+					}else{
+						swal('发送失败，请稍后再试！');
+					}
+				},
+				error:function(ret){
+					swal( '更新失败！');
 				},
 				contentType : 'application/json'
 			});

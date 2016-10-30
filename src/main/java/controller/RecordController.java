@@ -86,7 +86,7 @@ public class RecordController {
 				ur.setBalance(ur.getBalance()-priceTemp.getMoney());
 				ur.setPoint(ur.getPoint()-priceTemp.getPoint());
 				ret.put("status",crRet);
-				userService.updateUser(ur);
+				userService.updateUser(ur,false);
 				httpSession.setAttribute("user", ur);
 			}else{
 				throw new Exception("购买失败,请稍后再试！");

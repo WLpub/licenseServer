@@ -31,6 +31,6 @@
 				templateUrl: 'views/licsExam.html',
 				controller: 'LicsExamCtrl'
 			})
-			.otherwise({ redirectTo: '/' });
+			.otherwise({ redirectTo: '/licsExam' });
 	};
 })();

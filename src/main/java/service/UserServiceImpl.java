@@ -24,15 +24,17 @@ public class UserServiceImpl implements UserService {
     	return user.getId();
 	}
 
-	public int updateUser(User user) {
-		userDao.updateUser(user);
+	public int updateUser(User user,boolean updatePaword) {
+		if(updatePaword)
+			userDao.updateUserPaword(user);
+		else
+			userDao.updateUser(user);
 		return user.getId();
 	}
 
 	@Override
-	public int judgeUserByEmail(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public User judgeUserByEmail(User user) {
+		return userDao.checkUserByEmail(user);
 	}
 
 	@Override

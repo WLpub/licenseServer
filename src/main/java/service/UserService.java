@@ -7,9 +7,9 @@ public interface UserService {
 
 	int createUser(User user);
 
-	int updateUser(User user);
+	int updateUser(User user, boolean updatePassword);
 
-	int judgeUserByEmail(User user);
+	User judgeUserByEmail(User user);
 
 	User judgeUserByPhone(User user);
 
