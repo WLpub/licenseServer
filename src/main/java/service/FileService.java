@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 	private String t=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-	//private String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
+//	private String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
 	private String path="LicenseServer\\file\\";
 	private Date date = new Date();
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(FileService.class);

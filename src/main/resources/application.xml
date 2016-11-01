@@ -59,12 +59,12 @@
 	</bean>
 
 	<!--License处理 线程注册  -->  
-    <bean id="licenseThread" class="thread.LicenseThread">  
-    </bean> 
+     <bean id="licenseThreadPool" class="thread.LicenseThreadPool">  
+    </bean>  
     <bean id="serviceMap" class="thread.ServiceThreadMap">  
         <constructor-arg index="0">  
             <map>  
-                <entry key="licenseThread" value-ref="licenseThread"/>  
+                <entry key="licenseThreadPool" value-ref="licenseThreadPool"/>  
             </map>  
         </constructor-arg>  
     </bean>  

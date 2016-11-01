@@ -38,7 +38,7 @@ public class BootStrapper extends HttpServlet{
         webApp = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());  
           
         // start send message thread  
-        serviceThreadMap = (ServiceThreadMap) webApp.getBean("serviceMap");//得到service-spring.xml中註冊的線程列表  
+        serviceThreadMap = (ServiceThreadMap) webApp.getBean("serviceMap");//得到spring-application.xml中註冊的線程列表  
         Iterator<Thread> service = serviceThreadMap.getServiceMap().values().iterator();//得到線程列表中的線程迭代器  
         /* 
          * 啟動列表中的每一個線程 

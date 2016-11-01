@@ -11,7 +11,7 @@ public class ThreadVariables {
     public static List<String> licenseList = Collections.synchronizedList(new ArrayList<String>());  
       
   
-    public static void addnewGameSetList(String file){  
+    public static void processLicense(String file){  
     	licenseList.add(file);  
     } 
 }

@@ -63,13 +63,13 @@
 		$scope.changePage = function(page){
 			if(page>0&&$scope.pageTotal>(page-1)*10){
 				$scope.pageStart = page;
-				$scope.getRecords();
+				$scope.getCompanys();
 			}else if(page==-1&&$scope.pageStart>1){
 				$scope.pageStart--;
-				$scope.getRecords();
+				$scope.getCompanys();
 			}else if(page==-2&&$scope.pageTotal>$scope.pageStart*10){
 				$scope.pageStart++;
-				$scope.getRecords();
+				$scope.getCompanys();
 			}else{
 				swal("沒有更多數據！");
 			}
@@ -130,13 +130,13 @@
 		$scope.changePage = function(page){
 			if(page>0&&$scope.pageTotal>(page-1)*10){
 				$scope.pageStart = page;
-				$scope.getRecords();
+				$scope.getLicense();
 			}else if(page==-1&&$scope.pageStart>1){
 				$scope.pageStart--;
-				$scope.getRecords();
+				$scope.getLicense();
 			}else if(page==-2&&$scope.pageTotal>$scope.pageStart*10){
 				$scope.pageStart++;
-				$scope.getRecords();
+				$scope.getLicense();
 			}else{
 				swal("沒有更多數據！");
 			}

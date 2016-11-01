@@ -20,6 +20,7 @@ import model.User;
 import service.FileService;
 import service.LicenseService;
 import service.PermissionService;
+import thread.LicenseThreadPool;
 import thread.ThreadVariables;
 
 @Controller
@@ -140,7 +141,8 @@ public class LicenseController {
 			if(!license.getStatus().equals("1")){
 				license.setResult("");
 			}else{
-				ThreadVariables.licenseList.add(license.getFile());
+				//ThreadVariables.licenseList.add(license.getFile());
+				LicenseThreadPool.processLicense(license.getFile());
 				license.setResult(license.getFile());
 			}
 			licenseService.updateLicenseStatus(license);

@@ -18,7 +18,7 @@ import util.StringUtil;
 @Controller
 public class ImageController {
 	private static String t=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-	//private static String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
+//	private static String path=t.substring(1,t.indexOf(".metadata")).replace('/', '\\')+"LicenseServer\\file\\";
 	private static String path="LicenseServer\\file\\";
 	/**
 	 * 加载图片

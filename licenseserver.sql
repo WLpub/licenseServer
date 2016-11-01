@@ -59,7 +59,7 @@ CREATE TABLE `license` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userID` int(11) NOT NULL,
   `status` varchar(45) NOT NULL DEFAULT '0',
-  `description` varchar(500) DEFAULT '',
+  `description` varchar(100) DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idlicense_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
@@ -177,4 +177,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-31 16:51:12
+-- Dump completed on 2016-10-31 17:10:07
